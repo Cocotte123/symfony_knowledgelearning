@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'ComicNeueSansID';
+    src: url('../fonts/ComicNeueSansID.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+* {
+    font-family: 'ComicNeueSansID';
+}
