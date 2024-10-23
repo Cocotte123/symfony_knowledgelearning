@@ -85,7 +85,9 @@ class RegistrationController extends AbstractController
 
     
     /**
+     * Initial link sent to user with token in order to update field isActivated
      * @Route("/activateuser/{token}", name="app_activate_user")
+     * @param string $token
      */
     public function activateUser($token, JWTService $jwt, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
@@ -114,6 +116,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
+     * New link sent to user with new token in order to update field isActivated
      * @Route("/activate/resendlink", name="app_activate_resendlink")
      */
     public function activateUserResendLink(JWTService $jwt, EntityManagerInterface $entityManager, UserRepository $userRepository, SendEmailService $mail): Response

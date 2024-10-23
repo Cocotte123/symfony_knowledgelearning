@@ -19,6 +19,7 @@
         <script src="{{asset('./assets/js/scripts.js')}}" defer></script>
     </head>
     <body>
+        {% include "_partials/_header.html.twig" %}
         {% if app.user and app.user.isActivated == false %}
         <p>Votre compte n'est pas activé. Les achats seront accessibles dès que vous aurez passé cette étape. Pour renvoyer le lien d'activation, cliquez <a href="{{path('app_activate_resendlink')}}">ici</a></p>
         {% endif %}
