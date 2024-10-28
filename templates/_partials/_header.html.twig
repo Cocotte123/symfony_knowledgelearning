@@ -40,7 +40,7 @@
         
         {% if is_granted("ROLE_ADMIN") %}
             
-            <a href="#" class="nav-link px-2" style =" color:black;">Administration</a></li>
+            <a href="{{path('app_admin')}}" class="nav-link px-2" style =" color:black;">Administration</a></li>
            
         {% endif %}
         

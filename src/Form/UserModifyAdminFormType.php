@@ -5,13 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\IsTrue;
 
 
-class UserModifyFormType extends AbstractType
+class UserModifyAdminFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -25,8 +26,11 @@ class UserModifyFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'label' => "Prénom :"
             ])
-            //->add('updated_at')
-            //->add('updated_by')
+            ->add('isActivated', CheckboxType::class, [
+                //'attr' => ['class' => 'tinymce'],
+                'label' => "Activé :"
+            ])
+            
         ;
     }
 

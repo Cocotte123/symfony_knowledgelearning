@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
+    <a href="{{path('app_admin')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Back Office">Back office</a>
+
+    <div>
+    {{ form_start(searchUserForm) }}
+     {{ form_end(searchUserForm) }}
+    </div>
+   
+
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Activé</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Modifié le</th>
+            <th scope="col">Modifié par</th>
+            <th scope="col">Nb Formations</th>
+            <th scope="col">Nb Certifications</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+            <th scope="row">{{user.id}}</th>
+            <th scope="row">{{user.firstName}}</th>
+            <th scope="row">{{user.lastName}}</th>
+            <th scope="row">{{user.email}}</th>
+            <th scope="row">{{user.isActivated}}</th>
+            <th scope="row">{{user.createdat|date('d-m-Y') }}</th>
+            <th scope="row">{{user.updatedat|date('d-m-Y') }}</th>
+            <th scope="row">{{user.updatedby}}</th>
+            <th scope="row">x</th>
+            <th scope="row">x</th>
+            <th scope="row">
+                
+                <a href="#" class="btn" style="width: 50px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
+                <a href="{{path('app_admin_users_update', {id:user.id})}}" class="btn" style="width: 50px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_users_delete', {id:user.id})}}" class="btn" style="width: 50px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+                
+            </th>
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+            
+   
+
+    
+</main>
+{% endblock %}
