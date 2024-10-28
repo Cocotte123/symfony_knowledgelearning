@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre compte{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+   
+    <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour à votre compte">Retour à votre compte</a>
+
+
+    <section class="container">
+        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+       
+           {{ form_start(userModifyForm) }}
+            <div  class="row">
+ 
+            <div class="col-md-4">
+            {{ form_row(userModifyForm.firstName) }}
+            </div>
+            <div class="col-md-4">
+            {{ form_row(userModifyForm.lastName) }}
+            </div>
+            
+             
+            <div>
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            </div>
+          
+            </div>  
+            {{ form_end(userModifyForm) }}
+
+
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+       
+           {{ form_start(passwordModifyForm) }}
+            <div  class="row">
+ 
+            <div>
+            {{ form_row(passwordModifyForm.password) }}
+            </div>
+           
+            
+             
+            <div>
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            </div>
+          
+            </div>  
+            {{ form_end(passwordModifyForm) }}
+
+
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+            <p>Après avoir modifié votre adresse mail, vous devrez réactiver votre compte.</p>
+           {{ form_start(mailModifyForm) }}
+            <div  class="row">
+ 
+            <div>
+            {{ form_row(mailModifyForm.email) }}
+            </div>
+           
+            
+             
+            <div>
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            </div>
+          
+            </div>  
+            {{ form_end(mailModifyForm) }}
+
+
+        </div>
+    </section>
+
+    
+</main>
+{% endblock %}

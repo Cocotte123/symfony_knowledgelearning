@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre compte{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
+   
+    <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour aux utilisateurs">Retour aux utilisateurs</a>
+
+
+    <section class="container">
+        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+       
+           {{ form_start(userModifyAdminForm) }}
+            <div  class="row">
+ 
+            <div class="col-md-4">
+            {{ form_row(userModifyAdminForm.firstName) }}
+            </div>
+            <div class="col-md-4">
+            {{ form_row(userModifyAdminForm.lastName) }}
+            </div>
+            <div class="col-md-4">
+            {{ form_row(userModifyAdminForm.isActivated) }}
+            </div>
+            
+             
+            <div>
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            </div>
+          
+            </div>  
+            {{ form_end(userModifyAdminForm) }}
+
+
+        </div>
+    </section>
+
+   
+    <section class="container">
+        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+            <p>Après avoir modifié l'adresse mail, l'utilisateur devra réactiver votre compte.</p>
+           {{ form_start(mailModifyForm) }}
+            <div  class="row">
+ 
+            <div>
+            {{ form_row(mailModifyForm.email) }}
+            </div>
+           
+            
+             
+            <div>
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            </div>
+          
+            </div>  
+            {{ form_end(mailModifyForm) }}
+
+
+        </div>
+    </section>
+
+    
+</main>
+{% endblock %}
