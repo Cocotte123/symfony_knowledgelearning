@@ -58,4 +58,5 @@ class LearningController extends AbstractController
             'lessons' => $lessonRepository->findBy(['cursus'=>$id]),
         ]);
     }
+
 }
