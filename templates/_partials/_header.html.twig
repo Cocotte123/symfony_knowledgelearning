@@ -14,7 +14,7 @@
             <div class="col-md-4 text-end">
                 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li ><a href="#" class="nav-link px-2" style =" color:black;">Boutique</a></li>
+                <li ><a href="{{path('app_learning')}}" class="nav-link px-2" style =" color:black;">Boutique</a></li>
                 <li><a href="{{path('app_logout')}}" class="nav-link px-2" style =" color:black;">Se déconnecter</a></li>
                 </ul>
             </div>
@@ -23,15 +23,16 @@
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{path('app_home')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_home') ? 'underline':'none'}}">Accueil</a></li>
                 <li><a href="{{path('app_profile')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_profile') ? 'underline':'none'}}">Votre compte</a></li>
-                <li><a href="#" class="nav-link px-2"  style =" color:black;">Boutique</a></li>
+                <li><a href="{{path('app_learning')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_learning') ? 'underline':'none'}}">Boutique</a></li>
                 <li><a href="#" class="nav-link px-2"  style =" color:black;">Panier</a></li>
                 <li><a href="{{path('app_logout')}}" class="nav-link px-2" style =" color:black;">Se déconnecter</a></li>
                 </ul>
             </div>
         {% else %}
-            <div class="col-md-3 text-end">
+            <div class="col-md-6 text-end">
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{path('app_home')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_home_page') ? 'underline':'none'}}">Accueil</a></li>
+                <li><a href="{{path('app_learning')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_learning') ? 'underline':'none'}}">Boutique</a></li>
                 <li><a href="{{path('app_register')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_register') ? 'underline':'none'}}">S'inscrire</a></li>
                 <li><a href="{{path('app_login')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_login') ? 'underline':'none'}}">Se Connecter</a></li>
                 </ul>
