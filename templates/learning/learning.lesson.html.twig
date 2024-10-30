@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block body %}
+{% if app.user%}
+{% else %}
+<p class="text-center border border-warning">Pour effectuer des achats, vous devez créer un compte.</p>
+{% endif %}
+
+<section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+    {% if app.user %}
+    <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+    {% endif %}
+    <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Boutique">Boutique</a>
+</section>
+
+<section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+    <h2 style="margin-bottom:30px;">Nos formations pour le Cursus {{cursus.level}} {{cursus.name}}</h2>
+    <div class="row mx-auto gy-5">
+            <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem; height: 15rem">
+                    <div class="card-body">
+                        <h5 class="card-title">Cursus {{cursus.level}} {{cursus.name}}</h5>
+                        <p class="card-text">Cursus complet</p>
+                        <p class="card-text">{{cursus.formattedPrice}} €</p>
+                        {% if app.user and app.user.isActivated == true %}
+                        <a href="#" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
+                        {% endif %}
+                    </div>
+                    </div>
+            </div>
+
+        {% for lesson in lessons|sort((a, b) => a.number <=> b.number) %}
+            <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem; height: 15rem">
+                    <div class="card-body">
+                        <h5 class="card-title">{{lesson.name}}</h5>
+                        <p class="card-text">Leçon n° {{lesson.number}}</p>
+                        <p class="card-text">{{lesson.formattedPrice}} €</p>
+                        {% if app.user and app.user.isActivated == true %}
+                        <a href="#" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
+                        {% endif %}
+                    </div>
+                    </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    
+    
+
+</section>
+{% endblock %}

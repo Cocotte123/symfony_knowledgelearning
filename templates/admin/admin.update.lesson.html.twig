@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+    <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
+    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Formations">Formations</a>
+  </section>
+
+  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+    <h2>Modifier la leçon {{modifiedLesson.name}}</h2>
+    
+    {{ form_start(modifyLessonForm) }}
+    <div  class="row">
+ 
+      <div class="col-md-4">
+            {{ form_row(modifyLessonForm.name) }}
+      </div>
+      <div class="col-md-4">
+            {{ form_row(modifyLessonForm.number) }}
+      </div>
+      <div class="col-md-4">
+            {{ form_row(modifyLessonForm.price) }}
+      </div>
+      <div class="col-md-4">
+            {{ form_row(modifyLessonForm.video) }}
+      </div>
+      <div class="col-md-4">
+            {{ form_row(modifyLessonForm.text) }}
+      </div>
+      <div class="col-md-4">
+            {{ form_row(modifyLessonForm.cursus) }}
+      </div>
+      <div class="col-md-4">
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Modifier">Modifier</button>
+      </div>
+    </div>
+    {{ form_end(modifyLessonForm) }}
+  </section>
+
+  
+</main>
+{% endblock %}

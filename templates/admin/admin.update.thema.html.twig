@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
+    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Formations">Formations</a>
+
+    <h2>Modifier le thème {{modifiedThema.name}}</h2>
+    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;">
+    {{ form_start(modifyThemaForm) }}
+    <div  class="row">
+ 
+            <div class="col-md-4">
+            {{ form_row(modifyThemaForm.name) }}
+            </div>
+            <div class="col-md-4">
+            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Modifier">Modifier</button>
+            </div>
+     {{ form_end(modifyThemaForm) }}
+   </section>
+    
+</main>
+{% endblock %}
