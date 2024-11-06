@@ -25,7 +25,7 @@
                         <p class="card-text">Cursus complet</p>
                         <p class="card-text">{{cursus.formattedPrice}} €</p>
                         {% if app.user and app.user.isActivated == true %}
-                        <a href="#" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
+                        <a href="{{path('app_cart_add', {id:cursus.id,repository:'cursus'})}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
                         {% endif %}
                     </div>
                     </div>
@@ -39,7 +39,7 @@
                         <p class="card-text">Leçon n° {{lesson.number}}</p>
                         <p class="card-text">{{lesson.formattedPrice}} €</p>
                         {% if app.user and app.user.isActivated == true %}
-                        <a href="#" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
+                        <a href="{{path('app_cart_add', {id:lesson.id,repository:'lesson'})}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
                         {% endif %}
                     </div>
                     </div>

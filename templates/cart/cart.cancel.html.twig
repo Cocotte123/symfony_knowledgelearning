@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Achat annulé{% endblock %}
+
+{% block body %}
+<main>
+    <section class="container text-center">
+        <h1>Votre paiement est annulé</h1>
+        <p>Merci {{ user.firstName }} de votre confiance</p>
+        <p>Votre panier sera conservé pendant 24h.</p>
+        <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #556B2F 1px;background-color:#8FBC8F;">Retour sur la boutique</a>
+
+    </section>
+    
+</main>
+{% endblock %}
