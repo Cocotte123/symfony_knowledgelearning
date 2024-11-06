@@ -99,6 +99,7 @@ class RegistrationController extends AbstractController
             $user = $userRepository->find($payload['user_id']);
             if($user && !$user->isIsActivated()){
                 $user->setIsActivated(true);
+                $user->setRoles(['ROLE_CLIENT']);
                 $entityManager->flush();
                 $this->addFlash('success', 'Félicitations! Votre compte est maintenant activé.');
                 return $this->redirectToRoute('app_home');

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -80,10 +82,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $updated_by;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
+     */
+    private $orders;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Usercursus::class, mappedBy="user")
+     */
+    private $usercursuses;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->created_by = "Init";
+        $this->orders = new ArrayCollection();
+        $this->usercursuses = new ArrayCollection();
 
     }
 
@@ -256,6 +270,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedBy(?string $updated_by): self
     {
         $this->updated_by = $updated_by;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Usercursus>
+     */
+    public function getUsercursuses(): Collection
+    {
+        return $this->usercursuses;
+    }
+
+    public function addUsercursus(Usercursus $usercursus): self
+    {
+        if (!$this->usercursuses->contains($usercursus)) {
+            $this->usercursuses[] = $usercursus;
+            $usercursus->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsercursus(Usercursus $usercursus): self
+    {
+        if ($this->usercursuses->removeElement($usercursus)) {
+            // set the owning side to null (unless already changed)
+            if ($usercursus->getUser() === $this) {
+                $usercursus->setUser(null);
+            }
+        }
 
         return $this;
     }

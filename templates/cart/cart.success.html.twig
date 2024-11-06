@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Achat confirmé{% endblock %}
+
+{% block body %}
+<main>
+    <section class="container text-center">
+        <h1>Achat réalisé avec succès!</h1>
+        <p>Numéro de commande : {{ order.id }}</p>
+        <p>Merci {{ user.firstName }} de votre confiance</p>
+        <p>Rendez-vous dans votre espace pour accédez à vos nouvelles <a href="#">Formations</a></p>
+        <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #556B2F 1px;background-color:#8FBC8F;">Retour sur la boutique</a>
+
+    </section>
+    
+</main>
+{% endblock %}

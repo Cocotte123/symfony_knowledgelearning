@@ -24,7 +24,7 @@
                 <li><a href="{{path('app_home')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_home') ? 'underline':'none'}}">Accueil</a></li>
                 <li><a href="{{path('app_profile')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_profile') ? 'underline':'none'}}">Votre compte</a></li>
                 <li><a href="{{path('app_learning')}}" class="nav-link px-2"  style =" color:black; text-decoration: {{(app.request.get('_route') == 'app_learning') ? 'underline':'none'}}">Boutique</a></li>
-                <li><a href="#" class="nav-link px-2"  style =" color:black;">Panier</a></li>
+                <li><a href="{{path('app_cart')}}" class="nav-link px-2"  style =" color:black;text-decoration: {{(app.request.get('_route') == 'app_cart') ? 'underline':'none'}}">Panier</a></li>
                 <li><a href="{{path('app_logout')}}" class="nav-link px-2" style =" color:black;">Se déconnecter</a></li>
                 </ul>
             </div>
