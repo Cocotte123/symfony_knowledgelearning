@@ -10,6 +10,9 @@ use App\Repository\UserRepository;
 use App\Repository\ThemaRepository;
 use App\Repository\CursusRepository;
 use App\Repository\LessonRepository;
+use App\Repository\OrderRepository;
+use App\Repository\OrderdetailRepository;
+use App\Repository\UsercursusRepository;
 use App\Form\UserModifyAdminFormType;
 use App\Form\MailUserModifyFormType;
 use App\Form\ThemaRegistrationFormType;
@@ -421,6 +424,125 @@ class AdminController extends AbstractController
             'modifiedLesson' => $modifiedLesson,
             'modifyLessonForm' => $modifyLessonForm->createView(),
           
+        ]);
+    }
+
+    /**
+     * @Route("/admin/user/history/{id}", name="app_admin_user_history")
+     */
+    public function userHistoryAdmin($id, UserRepository $userRepository, OrderRepository $orderRepository, UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $user = $userRepository->findOneBy(['id'=>$id]);
+        $userId = $user->getId();
+        $userCursus = $userCursusRepository->findBy(['user'=>$user]);
+
+        foreach($userCursus as $data){
+            $repository=$data->getRepository();
+            $userCursusId=$data->getLearningId();
+            $userCursusCreatedAt=$data->getCreatedAt();
+            $userCursusUpdatedAt=$data->getUpdatedAt();
+            $userCursusIsValidated=$data->isIsValidated();
+            if($repository=='cursus'){
+                $userLearning = $cursusRepository->findOneBy(['id'=>$userCursusId]);
+                $userLearningName = "Cursus ".$userLearning->getLevel()." ".$userLearning->getName();
+            } else {
+                $userLearning = $lessonRepository->findOneBy(['id'=>$userCursusId]);
+                $userLearningName = "Leçon ".$userLearning->getName();
+            }
+            $userLearningContent[] = [
+                "learning" => $userLearningName,
+                "createdAt" => $userCursusCreatedAt,
+                "updatedAt" => $userCursusUpdatedAt,
+                "isValidated" => $userCursusIsValidated,
+            ];
+            
+            
+        }
+       
+              
+       
+        return $this->render('admin/admin.user.history.html.twig', [
+            'controller_name' => 'AdminController',
+            'user' => $user,
+            'orders' => $orderRepository->orderbyuser($userId),
+            'userCursuses' => $userCursus,
+            'userLearningContents' =>$userLearningContent,
+        ]);
+    }
+
+     /**
+     * @Route("/admin/orders", name="app_admin_orders")
+     */
+    public function ordersAdmin(UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, OrderdetailRepository $orderDetailRepository, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $learningByMonth = $userCursusRepository->learningbymonth();
+        //dd($learningByMonth);
+        foreach($learningByMonth as $data){
+            $year=$data['year'];
+            $month=$data['month'];
+            $nb=$data['nb'];
+            $repository=$data['repository'];
+            $userCursusId=$data['learning_id'];
+            if($repository=='cursus'){
+                $learning = $cursusRepository->findOneBy(['id'=>$userCursusId]);
+                $learningName = "Cursus ".$learning->getLevel()." ".$learning->getName();
+            } else {
+                $learning = $lessonRepository->findOneBy(['id'=>$userCursusId]);
+                $learningName = "Leçon ".$learning->getName();
+            }
+            $distributionLearnings[] = [
+                "learning" => $learningName,
+                "year" => $year,
+                "month" => $month,
+                "nb" => $nb,
+
+            ];
+            
+            
+        }
+        
+        return $this->render('admin/admin.orders.html.twig', [
+            'controller_name' => 'AdminController',
+            'orders' => $orderDetailRepository->orderbymonth(),
+            'distributionLearnings' => $distributionLearnings,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/user/orderdetail/{id}", name="app_admin_user_orderdetail")
+     */
+    public function userOrderdetailAdmin($id, UserRepository $userRepository, OrderRepository $orderRepository, OrderdetailRepository $orderDetailRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $order = $id;
+        $orderDetail = $orderDetailRepository->findBy(['ordernumber'=>$id]);
+
+        foreach($orderDetail as $data){
+            $repository=$data->getRepository();
+            $orderDetailId=$data->getLearningId();
+            $orderDetailPrice=$data->getPrice();
+            if($repository=='cursus'){
+                $learning = $cursusRepository->findOneBy(['id'=>$orderDetailId]);
+                $learningName = "Cursus ".$learning->getLevel()." ".$learning->getName();
+            } else {
+                $learning = $lessonRepository->findOneBy(['id'=>$orderDetailId]);
+                $learningName = "Leçon ".$learning->getName();
+            }
+            $learningContent[] = [
+                "learning" => $learningName,
+                "price" => $orderDetailPrice,
+
+            ];
+            
+            
+        }
+                
+        return $this->render('admin/admin.user.orderdetail.html.twig', [
+            'controller_name' => 'AdminController',
+            'orderdetails' => $orderDetail,
+            'order' => $order,
+            'learningContents' => $learningContent,
         ]);
     }
 

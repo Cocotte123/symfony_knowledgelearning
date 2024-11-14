@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>{{ user.firstName }} {{ user.lastName}} - {{ user.email }}</h1>
+    <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour aux utilisateurs">Retour aux utilisateurs</a>
+    <h2>Ses commandes</h2>
+   
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Numéro de commande</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Créé par</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+            <th scope="row">{{ order.id }}</th>
+            <th scope="row">{{ order.created_at|date('d-m-Y') }}</th>
+            <th scope="row">{{ order.created_by }}</th>
+            <th scope="row">{{order.total}} €</th>
+            <th scope="row">
+                <div class="col">
+                <a href="{{path('app_admin_user_orderdetail', {id:order.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
+                </div>
+            </th>
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+
+    <h2>Ses formations</h2>
+
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Formation</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Dernière connexion le</th>
+            <th scope="col">Validée</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userLearningContent in userLearningContents %}
+            <tr>
+            <th scope="row">{{ userLearningContent.learning }}</th>
+            <th scope="row">{{ userLearningContent.createdAt|date('d-m-Y') }}</th>
+            {% if userLearningContent.updatedAt is empty %}
+            <th scope="row">Jamais</th>
+            {% else %}
+            <th scope="row">{{ userLearningContent.updatedAt|date('d-m-Y') }}</th>
+            {% endif %}
+            <th scope="row">{{ (userLearningContent.isValidated == 1) ? "oui" : "non" }}</th>
+           
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+            
+   
+
+    
+</main>
+{% endblock %}

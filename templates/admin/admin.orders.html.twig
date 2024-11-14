@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <a href="{{path('app_admin')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Back Office">Back office</a>
+    <h2>Suivi des commandes</h2>
+   
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Année</th>
+            <th scope="col">Mois</th>
+            <th scope="col">CA</th>
+            <th scope="col">Nombre de commandes</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+            <th scope="row">{{ order.year }}</th>
+            <th scope="row">{{ order.month }}</th>
+            <th scope="row">{{ order.total }} €</th>
+            <th scope="row">{{order.nb_orders}}</th>
+           
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+
+    <h2>Répartition des formations vendues</h2>
+
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Année</th>
+            <th scope="col">Mois</th>
+            <th scope="col">Formation</th>
+            <th scope="col">Nombre d'achat</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for distributionLearning in distributionLearnings|sort((a, b) => b.nb <=> a.nb) %}
+            <tr>
+            <th scope="row">{{ distributionLearning.year }}</th>
+            <th scope="row">{{ distributionLearning.month }}</th>
+            <th scope="row">{{ distributionLearning.learning }}</th>
+            <th scope="row">{{distributionLearning.nb}}</th>
+           
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+
+   
+            
+   
+
+    
+</main>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>Détails de la commande n° {{ order }}</h1>
+    
+
+   <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Formation</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for learningContent in learningContents %}
+            <tr>
+           
+            
+            <th scope="row">{{ learningContent.learning }}</th>
+            
+            <th scope="row">{{ learningContent.price }}</th>
+            <th scope="row">
+                <div class="col">
+                <a href="#" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
+                </div>
+            </th>
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+            
+   
+
+    
+</main>
+{% endblock %}

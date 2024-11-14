@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\OrderdetailRepository;
 
 /**
  * @extends ServiceEntityRepository<Order>
@@ -37,6 +38,35 @@ class OrderRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function orderbyuser($userId) {
+
+       
+        
+        //$query= $this->createQueryBuilder('o');
+           
+        //   $query->where('o.user = :user');
+        //   $query ->setParameter('user', $user);
+        //   $query ->orderBy('o.created_at', 'DESC');
+               
+        //return $query->getQuery()->getResult();
+
+        $query= $this->createQueryBuilder('o');
+        $query->select( 'o.id, o.created_at, o.created_by, SUM(od.price) as total' );
+        $query->leftJoin(
+                'App\Entity\Orderdetail',
+                'od',
+                'WITH',
+                'o.id = od.ordernumber'
+        );
+        $query->groupby('o.id');
+        $query->where('o.user = :id');
+        $query->setParameter('id', $userId) ;    
+        $query ->orderBy('o.created_at', 'DESC');
+        return $query->getQuery()->getResult();
+        
+       
     }
 
 //    /**

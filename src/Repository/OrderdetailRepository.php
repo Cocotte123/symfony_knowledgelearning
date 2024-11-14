@@ -5,6 +5,11 @@ namespace App\Repository;
 use App\Entity\Orderdetail;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\LessonRepository;
+use App\Repository\CursusRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * @extends ServiceEntityRepository<Orderdetail>
@@ -39,6 +44,21 @@ class OrderdetailRepository extends ServiceEntityRepository
         }
     }
 
+    public function orderbymonth() {
+
+
+        $query= $this->createQueryBuilder('od');
+        $query->select( 'YEAR(od.created_at) as year, MONTH(od.created_at) as month, SUM(od.price) as total, COUNT(od.ordernumber) as nb_orders' );
+        
+        $query->groupby('year,month');
+        $query ->orderBy('year,month', 'DESC');
+        return $query->getQuery()->getResult();
+        
+       
+    }
+
+
+   
 //    /**
 //     * @return Orderdetail[] Returns an array of Orderdetail objects
 //     */

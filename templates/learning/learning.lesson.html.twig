@@ -24,8 +24,10 @@
                         <h5 class="card-title">Cursus {{cursus.level}} {{cursus.name}}</h5>
                         <p class="card-text">Cursus complet</p>
                         <p class="card-text">{{cursus.formattedPrice}} €</p>
-                        {% if app.user and app.user.isActivated == true %}
+                        {% if is_granted("ROLE_CLIENT") %}
                         <a href="{{path('app_cart_add', {id:cursus.id,repository:'cursus'})}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter au panier">Ajouter au panier</a>
+                        {% else %}
+                        <p>Vous devez être connecté et activé pour acheter.</p>
                         {% endif %}
                     </div>
                     </div>
