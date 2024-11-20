@@ -67,11 +67,25 @@ class Cursus
      */
     private $updated_by;
 
+    /**
+     * @ORM\Column(type="integer", options={"default": "1"})
+     * @Assert\Positive(message="Le nombre de leçon doit être positif.")
+     */
+    private $nbLessons;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserCursusLesson::class, mappedBy="cursus")
+     */
+    private $userCursusLessons;
+
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
         $this->created_by = "Init";
+        $this->nbLessons = "1";
+        $this->userCursusLessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -206,6 +220,48 @@ class Cursus
     public function setUpdatedBy(?string $updated_by): self
     {
         $this->updated_by = $updated_by;
+
+        return $this;
+    }
+
+    public function getNbLessons(): ?int
+    {
+        return $this->nbLessons;
+    }
+
+    public function setNbLessons(int $nbLessons): self
+    {
+        $this->nbLessons = $nbLessons;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserCursusLesson>
+     */
+    public function getUserCursusLessons(): Collection
+    {
+        return $this->userCursusLessons;
+    }
+
+    public function addUserCursusLesson(UserCursusLesson $userCursusLesson): self
+    {
+        if (!$this->userCursusLessons->contains($userCursusLesson)) {
+            $this->userCursusLessons[] = $userCursusLesson;
+            $userCursusLesson->setCursus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCursusLesson(UserCursusLesson $userCursusLesson): self
+    {
+        if ($this->userCursusLessons->removeElement($userCursusLesson)) {
+            // set the owning side to null (unless already changed)
+            if ($userCursusLesson->getCursus() === $this) {
+                $userCursusLesson->setCursus(null);
+            }
+        }
 
         return $this;
     }

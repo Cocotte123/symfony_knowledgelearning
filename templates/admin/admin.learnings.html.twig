@@ -32,6 +32,9 @@
             {{ form_row(newCursusForm.thema) }}
             </div>
             <div class="col-md-4">
+            {{ form_row(newCursusForm.nbLessons) }}
+            </div>
+            <div class="col-md-4">
             <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter">Ajouter</button>
             </div>
     </div>
@@ -47,6 +50,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Prix</th>
             <th scope="col">Thème</th>
+            <th scope="col">Nb Leçons</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -57,6 +61,7 @@
             <th scope="row">Cursus {{cursus.level}} {{cursus.name}}</th>
             <th scope="row">{{cursus.price}}</th>
             <th scope="row">{{cursus.thema.name}}</th>
+            <th scope="row">{{cursus.nbLessons}}</th>
             <th scope="row">
                 <a href="{{path('app_admin_cursus_update', {id:cursus.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
                 <a href="{{path('app_admin_cursus_delete', {id:cursus.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
@@ -124,7 +129,7 @@
             <th scope="row">{{lesson.name}}</th>
             <th scope="row">{{lesson.number}}</th>
             <th scope="row">{{lesson.price}}</th>
-            <th scope="row">{{lesson.cursus.name}}</th>
+            <th scope="row">{{lesson.cursus.level}} {{lesson.cursus.name}}</th>
             <th scope="row">
                 <a href="{{path('app_admin_lesson_update', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
                 <a href="{{path('app_admin_lesson_delete', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>

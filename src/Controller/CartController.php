@@ -6,9 +6,11 @@ use App\Repository\LessonRepository;
 use App\Repository\OrderRepository;
 use App\Repository\OrderdetailRepository;
 use App\Repository\UsercursusRepository;
+use App\Repository\UserCursusLessonRepository;
 use App\Entity\Order;
 use App\Entity\Orderdetail;
 use App\Entity\Usercursus;
+use App\Entity\UserCursusLesson;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -215,7 +217,31 @@ class CartController extends AbstractController
             $userCursus->setRepository($repository);
             $userCursus->setLearningId($id);
             $entityManager->persist($userCursus);
+
+            //create user's CursusLesson with different treatment if a completed cursus is bought or just one lesson
+            if($repository=='lesson'){
+            $userCursusLesson = new UserCursusLesson();
+            $userCursusLesson->setUser($user);
+            $lesson = $lessonRepository->findOneBy(['id'=>$id]);
+            $userCursusLesson->setLearning($lesson);
+            $cursus = $lessonRepository->findOneBy(['id'=>$id])->getCursus();
+            $userCursusLesson->setCursus($cursus);
+            $entityManager->persist($userCursusLesson);
+            } else {
+            $lessonByCursus = $lessonRepository->findBy(['cursus'=>$id]);
             
+            foreach($lessonByCursus as $data){
+                $userCursusLesson = new UserCursusLesson();
+                $userCursusLesson->setUser($user);
+
+                $userCursusLesson->setLearning($data);
+                $cursus = $data->getCursus();
+                $userCursusLesson->setCursus($cursus);
+                $entityManager->persist($userCursusLesson);
+               
+            }
+        }
+        
         }
 
         $entityManager->persist($order);

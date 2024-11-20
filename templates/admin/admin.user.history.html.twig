@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>{{ user.firstName }} {{ user.lastName}} - {{ user.email }}</h1>
+    <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour aux utilisateurs">Retour aux utilisateurs</a>
+    <h2>Ses commandes</h2>
+   
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Numéro de commande</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Créé par</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+            <th scope="row">{{ order.id }}</th>
+            <th scope="row">{{ order.created_at|date('d-m-Y') }}</th>
+            <th scope="row">{{ order.created_by }}</th>
+            <th scope="row">{{order.total}} €</th>
+            <th scope="row">
+                <div class="col">
+                <a href="{{path('app_admin_user_orderdetail', {id:order.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
+                </div>
+            </th>
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+
+    <h2>Ses formations</h2>
+
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Cursus</th>
+            <th scope="col">Formation</th>
+            <th scope="col">N° Leçon</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Validée le</th>
+            <th scope="col">Validée</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userCursusLessonContent in userCursusLessonContents %}
+            <tr>
+            <th scope="row">{{ userCursusLessonContent.cursusLevel }} {{ userCursusLessonContent.cursusName}} ({{ userCursusLessonContent.cursusNbLesson}} leçons)</th>
+            <th scope="row">{{ userCursusLessonContent.lessonName }}</th>
+            <th scope="row">{{ userCursusLessonContent.lessonNumber }}</th>
+            <th scope="row">{{ userCursusLessonContent.createdAt|date('d-m-Y') }}</th>
+            {% if userCursusLessonContent.updatedAt is empty %}
+            <th scope="row">Jamais</th>
+            {% else %}
+            <th scope="row">{{ userCursusLessonContent.updatedAt|date('d-m-Y') }}</th>
+            {% endif %}
+            <th scope="row">{{ (userCursusLessonContent.isValidated == 1) ? "oui" : "non" }}</th>
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+
+    <h2>Ses certifications</h2>
+    <div class="container">
+    <div class="row mx-auto gy-5">
+    {% for userCertificationContent in userCertificationContents %}
+    <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem; height: 10rem">
+                    <div class="card-body">
+                        <h5 class="card-title">Cursus {{userCertificationContent.cursusLevel}} {{userCertificationContent.cursusName}}</h5>
+                    </div>
+                    </div>
+            </div>
+     {% endfor %}
+    </div>
+    </div>
+   
+
+    
+</main>
+{% endblock %}

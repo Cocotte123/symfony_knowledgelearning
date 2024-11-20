@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes formations{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>{{ user.firstName }} {{ user.lastName}}</h1>
+    <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour à mon compte">Retour à mon compte</a>
+    <h2>Mes certifications</h2>
+
+    <p>Un cursus est certifiée, quand toutes les leçons ont été validées.</p>
+
+    <div class="container">
+    <div class="row mx-auto gy-5">
+    {% for userCertificationContent in userCertificationContents %}
+    <div class="col-md-4 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem; height: 10rem">
+                    <div class="card-body">
+                        <h5 class="card-title">Cursus {{userCertificationContent.cursusLevel}} {{userCertificationContent.cursusName}}</h5>
+                    </div>
+                    </div>
+            </div>
+     {% endfor %}
+    </div>
+    </div>
+    
+</main>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes formations{% endblock %}
+
+{% block body %}
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+
+
+    <h1>{{ user.firstName }} {{ user.lastName}}</h1>
+    <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour à mon compte">Retour à mon compte</a>
+    <h2>Mes formations</h2>
+
+     
+    
+    <div class="container">
+    
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Cursus</th>
+            <th scope="col">Formation</th>
+            <th scope="col">N° Leçon</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Validée le</th>
+            <th scope="col">Validée</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userCursusLessonContent in userCursusLessonContents %}
+            <tr>
+            <th scope="row">{{ userCursusLessonContent.cursusLevel }} {{ userCursusLessonContent.cursusName}} ({{ userCursusLessonContent.cursusNbLesson}} leçons)</th>
+            <th scope="row">{{ userCursusLessonContent.lessonName }}</th>
+            <th scope="row">{{ userCursusLessonContent.lessonNumber }}</th>
+            <th scope="row">{{ userCursusLessonContent.createdAt|date('d-m-Y') }}</th>
+            {% if userCursusLessonContent.updatedAt is empty %}
+            <th scope="row">Jamais</th>
+            {% else %}
+            <th scope="row">{{ userCursusLessonContent.updatedAt|date('d-m-Y') }}</th>
+            {% endif %}
+            <th scope="row">{{ (userCursusLessonContent.isValidated == 1) ? "oui" : "non" }}</th>
+            <th scope="row"><a href="{{path('app_bought_lesson', {id:userCursusLessonContent.lessonId})}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Suivre">Suivre</a></th>
+ 
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+            
+            
+   
+
+    
+</main>
+{% endblock %}

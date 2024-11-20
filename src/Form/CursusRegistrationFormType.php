@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class CursusRegistrationFormType extends AbstractType
 {
@@ -41,6 +42,10 @@ class CursusRegistrationFormType extends AbstractType
                 'required' => true,
                 'query_builder' => function (ThemaRepository $themaRepository){return $themaRepository->createQueryBuilder('t')->orderBy('t.name','ASC'); },
                
+            ])
+            ->add('nbLessons', IntegerType::class, [
+                'attr' => ['class' => 'form-control'],
+                'label' => "Nombre de leçons :",
             ])
         ;
     }

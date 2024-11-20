@@ -49,13 +49,15 @@ class LearningController extends AbstractController
     {
         $user = $this->getUser();
         $cursus = $cursusRepository->findOneBy(['id'=>$id]);
+        $lessons = $lessonRepository->findBy(['cursus'=>$id]);
+        
        
         
         return $this->render('learning/learning.lesson.html.twig', [
             'controller_name' => 'LearningController',
             'user' => $user,
             'cursus' => $cursus,
-            'lessons' => $lessonRepository->findBy(['cursus'=>$id]),
+            'lessons' => $lessons,
         ]);
     }
 

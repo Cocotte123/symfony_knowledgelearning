@@ -92,12 +92,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $usercursuses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserCursusLesson::class, mappedBy="relations")
+     */
+    private $userCursusLessons;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->created_by = "Init";
         $this->orders = new ArrayCollection();
         $this->usercursuses = new ArrayCollection();
+        $this->userCursusLessons = new ArrayCollection();
 
     }
 
@@ -328,6 +334,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($usercursus->getUser() === $this) {
                 $usercursus->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserCursusLesson>
+     */
+    public function getUserCursusLessons(): Collection
+    {
+        return $this->userCursusLessons;
+    }
+
+    public function addUserCursusLesson(UserCursusLesson $userCursusLesson): self
+    {
+        if (!$this->userCursusLessons->contains($userCursusLesson)) {
+            $this->userCursusLessons[] = $userCursusLesson;
+            $userCursusLesson->setRelations($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCursusLesson(UserCursusLesson $userCursusLesson): self
+    {
+        if ($this->userCursusLessons->removeElement($userCursusLesson)) {
+            // set the owning side to null (unless already changed)
+            if ($userCursusLesson->getRelations() === $this) {
+                $userCursusLesson->setRelations(null);
             }
         }
 

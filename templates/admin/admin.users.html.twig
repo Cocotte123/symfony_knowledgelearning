@@ -40,18 +40,18 @@
             <th scope="row">{{user.firstName}}</th>
             <th scope="row">{{user.lastName}}</th>
             <th scope="row">{{user.email}}</th>
-            <th scope="row">{{user.isActivated}}</th>
+            <th scope="row">{{ (user.isActivated == 1) ? "oui" : "non"}}</th>
             <th scope="row">{{user.createdat|date('d-m-Y') }}</th>
             <th scope="row">{{user.updatedat|date('d-m-Y') }}</th>
             <th scope="row">{{user.updatedby}}</th>
             <th scope="row">x</th>
             <th scope="row">x</th>
             <th scope="row">
-                
-                <a href="#" class="btn" style="width: 50px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
-                <a href="{{path('app_admin_users_update', {id:user.id})}}" class="btn" style="width: 50px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
-                <a href="{{path('app_admin_users_delete', {id:user.id})}}" class="btn" style="width: 50px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
-                
+                <div class="col">
+                <a href="{{path('app_admin_user_history', {id:user.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
+                <a href="{{path('app_admin_users_update', {id:user.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_users_delete', {id:user.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+                </div>
             </th>
  
             </tr>

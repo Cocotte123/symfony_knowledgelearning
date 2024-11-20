@@ -39,6 +39,19 @@ class UsercursusRepository extends ServiceEntityRepository
         }
     }
 
+    public function learningbymonth() {
+
+
+        $query= $this->createQueryBuilder('uc');
+        $query->select( 'YEAR(uc.created_at) as year, MONTH(uc.created_at) as month, uc.repository,uc.learning_id, COUNT(CONCAT(uc.repository,uc.learning_id)) as nb' );
+        
+        $query->groupby('year,month,uc.repository,uc.learning_id');
+        $query ->orderBy('year,month', 'DESC');
+        return $query->getQuery()->getResult();
+        
+       
+    }
+
 //    /**
 //     * @return Usercursus[] Returns an array of Usercursus objects
 //     */
