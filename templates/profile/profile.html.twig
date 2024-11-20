@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Votre compte{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block body %}
 <main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
@@ -10,8 +10,9 @@
   
         
             <a href="{{path('app_profile_update')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Mon profil">Mon profil</a>
-            <a href="#" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Mes formations">Mes formations</a>
-            <a href="#" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Mes certifications">Mes certifications</a>
+            <a href="{{path('app_profile_orders')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Mes commandes">Mes commandes</a>
+            <a href="{{path('app_profile_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Mes formations">Mes formations</a>
+            <a href="{{path('app_profile_certifications')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Mes certifications">Mes certifications</a>
    
 
     

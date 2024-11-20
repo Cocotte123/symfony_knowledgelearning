@@ -13,6 +13,7 @@ use App\Repository\LessonRepository;
 use App\Repository\OrderRepository;
 use App\Repository\OrderdetailRepository;
 use App\Repository\UsercursusRepository;
+use App\Repository\UserCursusLessonRepository;
 use App\Form\UserModifyAdminFormType;
 use App\Form\MailUserModifyFormType;
 use App\Form\ThemaRegistrationFormType;
@@ -430,44 +431,90 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/user/history/{id}", name="app_admin_user_history")
      */
-    public function userHistoryAdmin($id, UserRepository $userRepository, OrderRepository $orderRepository, UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function userHistoryAdmin($id, UserRepository $userRepository, OrderRepository $orderRepository, UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, Request $request, EntityManagerInterface $entityManager, UserCursusLessonRepository $userCursusLessonRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = $userRepository->findOneBy(['id'=>$id]);
+        
         $userId = $user->getId();
-        $userCursus = $userCursusRepository->findBy(['user'=>$user]);
+        //$userCursus = $userCursusRepository->findBy(['user'=>$user]);
+        //foreach($userCursus as $data){
+        //    $repository=$data->getRepository();
+        //    $userCursusId=$data->getLearningId();
+        //    $userCursusCreatedAt=$data->getCreatedAt();
+        //    $userCursusUpdatedAt=$data->getUpdatedAt();
+        //    $userCursusIsValidated=$data->isIsValidated();
+        //    if($repository=='cursus'){
+        //        $userLearning = $cursusRepository->findOneBy(['id'=>$userCursusId]);
+        //        $userLearningName = "Cursus ".$userLearning->getLevel()." ".$userLearning->getName();
+        //    } else {
+        //        $userLearning = $lessonRepository->findOneBy(['id'=>$userCursusId]);
+        //        $userLearningName = "Leçon ".$userLearning->getName();
+        //    }
+        //    $userLearningContent[] = [
+        //        "learning" => $userLearningName,
+        //        "createdAt" => $userCursusCreatedAt,
+        //        "updatedAt" => $userCursusUpdatedAt,
+        //        "isValidated" => $userCursusIsValidated,
+        //    ];
+            
+            
+        //}
 
-        foreach($userCursus as $data){
-            $repository=$data->getRepository();
-            $userCursusId=$data->getLearningId();
-            $userCursusCreatedAt=$data->getCreatedAt();
-            $userCursusUpdatedAt=$data->getUpdatedAt();
-            $userCursusIsValidated=$data->isIsValidated();
-            if($repository=='cursus'){
-                $userLearning = $cursusRepository->findOneBy(['id'=>$userCursusId]);
-                $userLearningName = "Cursus ".$userLearning->getLevel()." ".$userLearning->getName();
-            } else {
-                $userLearning = $lessonRepository->findOneBy(['id'=>$userCursusId]);
-                $userLearningName = "Leçon ".$userLearning->getName();
-            }
-            $userLearningContent[] = [
-                "learning" => $userLearningName,
-                "createdAt" => $userCursusCreatedAt,
-                "updatedAt" => $userCursusUpdatedAt,
-                "isValidated" => $userCursusIsValidated,
+
+        $userCursusLesson = $userCursusLessonRepository->findBy(['user'=>$user]);
+        foreach($userCursusLesson as $data){
+            $userCursusLessonId=$data->getId();
+            $userCursusId=$data->getCursus()->getId();
+            $userCursusName=$cursusRepository->findOneBy(['id'=>$userCursusId])->getName();
+            $userCursusLevel=$cursusRepository->findOneBy(['id'=>$userCursusId])->getLevel();
+            $userCursusNbLesson=$cursusRepository->findOneBy(['id'=>$userCursusId])->getNbLessons();
+            $userLessonId=$data->getLearning()->getId();
+            $userLessonName=$lessonRepository->findOneBy(['id'=>$userLessonId])->getName();
+            $userLessonNumber=$lessonRepository->findOneBy(['id'=>$userLessonId])->getNumber();
+            $userCursusLessonCreatedAt=$data->getCreatedAt();
+            $userCursusLessonUpdatedAt=$data->getUpdatedAt();
+            $userCursusLessonIsValidated=$data->isIsValidated();
+
+            $userCursusLessonContent[] = [
+                "id" => $userCursusLessonId,
+                "createdAt" => $userCursusLessonCreatedAt,
+                "updatedAt" => $userCursusLessonUpdatedAt,
+                "isValidated" => $userCursusLessonIsValidated,
+                "cursusName" => $userCursusName,
+                "cursusLevel" =>$userCursusLevel,
+                "cursusNbLesson" =>$userCursusNbLesson,
+                "lessonName" => $userLessonName,
+                "lessonNumber" => $userLessonNumber,
+                "lessonId" =>$userLessonId,
             ];
             
             
         }
-       
-              
+
+        $userCertifications = $userCursusLessonRepository->certificationbyuser($userId);
+        //dd($userCertifications);
+        foreach($userCertifications as $data){
+            $cursusId=$data['cursus'];
+            $cursusName=$cursusRepository->findOneBy(['id'=>$cursusId])->getName();
+            $cursusLevel=$cursusRepository->findOneBy(['id'=>$cursusId])->getLevel();
+
+            $userCertificationContent[] = [
+                "cursusName" => $cursusName,
+                "cursusLevel" =>$cursusLevel,
+                
+            ];
+        }
+        
        
         return $this->render('admin/admin.user.history.html.twig', [
             'controller_name' => 'AdminController',
             'user' => $user,
             'orders' => $orderRepository->orderbyuser($userId),
-            'userCursuses' => $userCursus,
-            'userLearningContents' =>$userLearningContent,
+            //'userCursuses' => $userCursus,
+            //'userLearningContents' =>$userLearningContent,
+            'userCursusLessonContents' => $userCursusLessonContent,
+            'userCertificationContents' => $userCertificationContent,
         ]);
     }
 

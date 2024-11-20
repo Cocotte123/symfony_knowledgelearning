@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BoughtLessonController!{% endblock %}
+
+{% block body %}
+
+
+<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+   
+   <h1>Cursus {{ cursusData.level }} {{ cursusData.name }}</h1>
+    <div class="row mx-auto gy-5">
+    {% for cursusDisplay in cursusDisplays %}
+    <div class="col-md-4 d-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+            <h3>{{ cursusDisplay.name }}</h3>
+            <div class="card-body">
+                <p>Leçon n°{{ cursusDisplay.number }} sur {{ cursusDisplay.nbLessons }}</p>
+                <a href="{{path('app_bought_lesson', {id:cursusDisplay.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Suivre">Suivre</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+   </div>
+
+</main>
+{% endblock %}

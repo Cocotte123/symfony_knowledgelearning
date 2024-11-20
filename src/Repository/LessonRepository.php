@@ -39,6 +39,24 @@ class LessonRepository extends ServiceEntityRepository
         }
     }
 
+    public function lessonDisplay($lessonId) {
+
+
+        $query= $this->createQueryBuilder('l');
+        $query->select( 'l.name, l.number, l.video, l.text, c.name as cursusname, c.level, c.nbLessons' );
+        $query->leftJoin(
+                'App\Entity\Cursus',
+                'c',
+                'WITH',
+                'l.cursus = c.id'
+        );
+        $query->where('l.id = :lessonId');
+        $query->setParameter('lessonId', $lessonId) ;    
+        return $query->getQuery()->getResult();
+        
+       
+    }
+
 //    /**
 //     * @return Lesson[] Returns an array of Lesson objects
 //     */

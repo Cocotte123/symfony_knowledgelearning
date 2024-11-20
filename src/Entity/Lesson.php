@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LessonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -70,10 +72,16 @@ class Lesson
      */
     private $updated_by;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserCursusLesson::class, mappedBy="learning")
+     */
+    private $userCursusLessons;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->created_by = "Init";
+        $this->userCursusLessons = new ArrayCollection();
 
     }
 
@@ -203,6 +211,36 @@ class Lesson
     public function setUpdatedBy(?string $updated_by): self
     {
         $this->updated_by = $updated_by;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserCursusLesson>
+     */
+    public function getUserCursusLessons(): Collection
+    {
+        return $this->userCursusLessons;
+    }
+
+    public function addUserCursusLesson(UserCursusLesson $userCursusLesson): self
+    {
+        if (!$this->userCursusLessons->contains($userCursusLesson)) {
+            $this->userCursusLessons[] = $userCursusLesson;
+            $userCursusLesson->setLearning($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCursusLesson(UserCursusLesson $userCursusLesson): self
+    {
+        if ($this->userCursusLessons->removeElement($userCursusLesson)) {
+            // set the owning side to null (unless already changed)
+            if ($userCursusLesson->getLearning() === $this) {
+                $userCursusLesson->setLearning(null);
+            }
+        }
 
         return $this;
     }

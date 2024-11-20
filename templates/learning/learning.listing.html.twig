@@ -23,6 +23,7 @@
                     <div class="card" style="width: 18rem; height: 10rem">
                     <div class="card-body">
                         <h5 class="card-title">Cursus {{cursus.level}} {{cursus.name}}</h5>
+                        <p>{{cursus.nbLessons}} leçons</p>
                         <a href="{{path('app_learning_lesson', {id:cursus.id})}}" class="btn" style="width: 200px;border:solid black 1px;" >Consulter</a>
                     </div>
                     </div>

@@ -39,6 +39,25 @@ class CursusRepository extends ServiceEntityRepository
         }
     }
 
+    public function cursusDisplay($cursusId) {
+
+
+        $query= $this->createQueryBuilder('c');
+        $query->select( 'l.id,l.name, l.number, c.name as cursusname, c.level, c.nbLessons' );
+        $query->leftJoin(
+                'App\Entity\Lesson',
+                'l',
+                'WITH',
+                'c.id = l.cursus'
+        );
+        $query->where('c.id = :cursusId');
+        $query->setParameter('cursusId', $cursusId) ;    
+        return $query->getQuery()->getResult();
+        
+       
+    }
+
+
 //    /**
 //     * @return Cursus[] Returns an array of Cursus objects
 //     */
