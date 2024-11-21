@@ -3,15 +3,19 @@
 {% block title %}S'inscrire{% endblock %}
 
 {% block body %}
-    <h1>S'incrire</h1>
-
+<main  class="container mx-auto p-2" style="width:500px;">
+    <h1 class="mb-5">S'incrire</h1>
+    
     {{ form_start(registrationForm) }}
+    
         {{ form_row(registrationForm.lastName) }}
         {{ form_row(registrationForm.firstName) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
-        
-
-        <button type="submit" class="btn">Enregistrer</button>
+       
+        <div class="container text-center mt-5">
+        <button type="submit" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Enregistrer">Enregistrer</button>
+        </div>
     {{ form_end(registrationForm) }}
+</main>
 {% endblock %}

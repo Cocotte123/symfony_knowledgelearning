@@ -3,68 +3,72 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
-    <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
-    <a href="{{path('app_admin')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Back Office">Back office</a>
-    <a href="#cursus" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Cursus">Les cursus</a>
-    <a href="#lessons" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Leçons">Les leçons</a>
-    <a href="#themes" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Thèmes">Les thèmes</a>
+    <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
+        <a href="{{path('app_admin')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Back Office">Back office</a>
+        <a href="#cursus" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Cursus">Les cursus</a>
+        <a href="#lessons" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Leçons">Les leçons</a>
+        <a href="#themes" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Thèmes">Les thèmes</a>
+    </section>  
     
-    </section>
+   
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:10px;"">
-    <h2 id="cursus">Les cursus</h2>
+    <section class="container mx-auto p-2 text-center mb-5" style="width: 80%;margin-bottom:10px;">
+    <h2 class="mb-5 text-decoration-underline" id="cursus">Les cursus</h2>
+    <h4 class="mb-3 text-start">Ajouter un cursus</h4>
     {{ form_start(newCursusForm) }}
     <div  class="row">
- 
-            <div class="col-md-4">
-            {{ form_row(newCursusForm.name) }}
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-auto">
             {{ form_row(newCursusForm.level) }}
             </div>
-            <div class="col-md-4">
-            {{ form_row(newCursusForm.price) }}
-            </div>
-            <div class="col-md-4">
+            
+            <div class="col-md-4 my-auto">
             {{ form_row(newCursusForm.thema) }}
             </div>
             <div class="col-md-4">
+            {{ form_row(newCursusForm.name) }}
+            </div>
+            <div class="col-md-2">
+            {{ form_row(newCursusForm.price) }}
+            </div>
+             <div class="col-md-2">
             {{ form_row(newCursusForm.nbLessons) }}
             </div>
-            <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter">Ajouter</button>
+            
+           
+            <div class="col-md-4 my-auto">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Ajouter">Ajouter</button>
             </div>
     </div>
     {{ form_end(newCursusForm) }}
     </section>
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;"">
+    <section class="container mx-auto p-2 text-center" style="width: 80%;margin-bottom:30px;">
     
-        <table class="table">
+        <table  class="table mb-5">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Thème</th>
-            <th scope="col">Nb Leçons</th>
-            <th scope="col">Actions</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">#</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Nom</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Prix</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Thème</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Nb Leçons</th>
+            <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         {% for cursus in cursuses|sort((a, b) => a.thema.name <=> b.thema.name ?: a.name <=> b.name) %}
             <tr>
-            <th scope="row">{{cursus.id}}</th>
-            <th scope="row">Cursus {{cursus.level}} {{cursus.name}}</th>
-            <th scope="row">{{cursus.price}}</th>
-            <th scope="row">{{cursus.thema.name}}</th>
-            <th scope="row">{{cursus.nbLessons}}</th>
-            <th scope="row">
-                <a href="{{path('app_admin_cursus_update', {id:cursus.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
-                <a href="{{path('app_admin_cursus_delete', {id:cursus.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+            <th scope="row" style="color:#384050;">{{cursus.id}}</th>
+            <th scope="row" style="color:#384050;">Cursus {{cursus.level}} {{cursus.name}}</th>
+            <th scope="row" style="color:#384050;">{{cursus.price}}</th>
+            <th scope="row" style="color:#384050;">{{cursus.thema.name}}</th>
+            <th scope="row" style="color:#384050;">{{cursus.nbLessons}}</th>
+            <th scope="row" style="color:#384050;">
+                <a href="{{path('app_admin_cursus_update', {id:cursus.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_cursus_delete', {id:cursus.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Supprimer">Supprimer</a>
                 
             </th>
  
@@ -76,18 +80,21 @@
 
 
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:10px;">
-    <h2  id="lessons">Les leçons</h2>
-    
+    <section class="container mx-auto p-2 text-center" style="width: 80%;margin-bottom:10px;">
+    <h2 class="mb-5 text-decoration-underline"  id="lessons">Les leçons</h2>
+    <h4 class="mb-3 text-start">Ajouter une leçon</h4>
     {{ form_start(newLessonForm) }}
     <div  class="row">
+      <div  class="col-md-4 my-auto">
+            {{ form_row(newLessonForm.cursus) }}
+      </div>
       <div class="col-md-4">
             {{ form_row(newLessonForm.name) }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
             {{ form_row(newLessonForm.number) }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
             {{ form_row(newLessonForm.price) }}
       </div>
       <div class="col-md-4">
@@ -97,11 +104,9 @@
             {{ form_row(newLessonForm.video) }}
       </div>
       
-      <div class="col-md-4">
-            {{ form_row(newLessonForm.cursus) }}
-      </div>
-      <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter">Ajouter</button>
+      
+      <div class="col-md-4 my-auto">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Ajouter">Ajouter</button>
       </div>
       
       
@@ -109,30 +114,30 @@
     {{ form_end(newLessonForm) }}
     </section>
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;"">
+    <section  class="container mx-auto p-2 text-center" style="width: 80%;margin-bottom:30px;">
     
-        <table class="table">
+        <table  class="table mb-5">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Numéro</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Cursus</th>
-            <th scope="col">Actions</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">#</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Nom</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Numéro</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Prix</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">Cursus</th>
+            <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         {% for lesson in lessons|sort((a, b) => a.cursus.name <=> b.cursus.name ?: a.number <=> b.number) %}
             <tr>
-            <th scope="row">{{lesson.id}}</th>
-            <th scope="row">{{lesson.name}}</th>
-            <th scope="row">{{lesson.number}}</th>
-            <th scope="row">{{lesson.price}}</th>
-            <th scope="row">{{lesson.cursus.level}} {{lesson.cursus.name}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.id}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.name}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.number}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.price}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.cursus.level}} {{lesson.cursus.name}}</th>
             <th scope="row">
-                <a href="{{path('app_admin_lesson_update', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
-                <a href="{{path('app_admin_lesson_delete', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+                <a href="{{path('app_admin_lesson_update', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_lesson_delete', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Supprimer">Supprimer</a>
                 
             </th>
  
@@ -145,40 +150,40 @@
 
 
     
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:10px;"">
-    <h2 id="themes">Les thèmes</h2>
-    
+    <section class="container mx-auto p-2 text-center" style="width: 80%;margin-bottom:10px;">
+    <h2 class="mb-5 text-decoration-underline" id="themes">Les thèmes</h2>
+    <h4 class="mb-3 text-start">Ajouter un thème</h4>
     {{ form_start(newThemaForm) }}
     <div  class="row">
  
-            <div class="col-md-4">
+            <div class="col-md-6">
             {{ form_row(newThemaForm.name) }}
             </div>
-            <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter">Ajouter</button>
+            <div class="col-md-6 my-auto">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Ajouter">Ajouter</button>
             </div>
     </div>
      {{ form_end(newThemaForm) }}
    </section>
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;"">
+    <section  class="container mx-auto p-2 text-center" style="width: 80%;margin-bottom:30px;">
     
-        <table class="table">
+        <table class="table mb-5">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Actions</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;width:30%;">#</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;width:30%;">Nom</th>
+            <th scope="col" style="width:30%;"></th>
             </tr>
         </thead>
         <tbody>
         {% for thema in themas|sort((a, b) => a.name <=> b.name) %}
             <tr>
-            <th scope="row">{{thema.id}}</th>
-            <th scope="row">{{thema.name}}</th>
+            <th scope="row" style="color:#384050;">{{thema.id}}</th>
+            <th scope="row" style="color:#384050;">{{thema.name}}</th>
             <th scope="row">
-                <a href="{{path('app_admin_thema_update', {id:thema.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
-                <a href="{{path('app_admin_thema_delete', {id:thema.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+                <a href="{{path('app_admin_thema_update', {id:thema.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_thema_delete', {id:thema.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Supprimer">Supprimer</a>
                 
             </th>
  

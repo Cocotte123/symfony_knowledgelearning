@@ -5,26 +5,29 @@
 {% block body %}
 {% if app.user%}
 {% else %}
-<p class="text-center border border-warning">Pour effectuer des achats, vous devez créer un compte.</p>
+<p class="text-center border border-warning" style="width: 80%;color:#cd2c2e;">Pour effectuer des achats, vous devez créer un compte.</p>
 {% endif %}
 
-<section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
-    {% if app.user %}
+{% if app.user %}
+<section class=" container text-center mt-5 mb-5" style="color:#00497c;">
     <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
-    {% endif %}
-    <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Boutique">Boutique</a>
 </section>
+<section class=" container text-center mb-5">
+    <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #82b864 1px;background-color:#82b864; color:#f1f8fc;" aria-label="Boutique">Boutique</a>
+</section>
+{% endif %}
 
-<section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
-    <h2 style="margin-bottom:30px;">Nos formations pour le thème: {{thema.name}} </h2>
+
+<section class="container mx-auto p-2 text-center" style="width: 80%;">
+    <h2 style="margin-bottom:30px;color:#82b864;">Nos formations sur le thème: {{thema.name}} </h2>
     <div class="row mx-auto gy-5">
         {% for cursus in cursuses|sort((a, b) => a.name <=> b.name) %}
             <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem; height: 10rem">
-                    <div class="card-body">
-                        <h5 class="card-title">Cursus {{cursus.level}} {{cursus.name}}</h5>
-                        <p>{{cursus.nbLessons}} leçons</p>
-                        <a href="{{path('app_learning_lesson', {id:cursus.id})}}" class="btn" style="width: 200px;border:solid black 1px;" >Consulter</a>
+                    <div class="card" style="width: 18rem; height: 13rem; background-color:#00497c">
+                    <div class="card-body" style="padding-top:40px;">
+                        <h5 class="card-title" style="color:#f1f8fc;">Cursus {{cursus.level}} {{cursus.name}}</h5>
+                        <p style="color:#f1f8fc;">{{cursus.nbLessons}} leçons</p>
+                        <a href="{{path('app_learning_lesson', {id:cursus.id})}}" class="btn" style="width: 200px;border:solid #82b864 2px; color:#f1f8fc;margin-top:5px;" aria-label="Consulter">Consulter</a>
                     </div>
                     </div>
             </div>

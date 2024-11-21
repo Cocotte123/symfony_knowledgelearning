@@ -3,17 +3,17 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
 
-
-    <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
-  
+<section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+    <h1 style="margin-bottom:50px;">Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+    
         
-            <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Utilisateurs">Utilisateurs</a>
-            <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Formations">Formations</a>
-            <a href="{{path('app_admin_orders')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Commandes">Commandes</a>
+            <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Utilisateurs">Utilisateurs</a>
+            <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Formations">Formations</a>
+            <a href="{{path('app_admin_orders')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Commandes">Commandes</a>
    
 
-    
+</section>   
 </main>
 {% endblock %}

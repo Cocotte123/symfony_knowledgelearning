@@ -5,11 +5,14 @@
 {% block body %}
 
 
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
-   <h1>Félicitations {{ user.firstName }} {{ user.lastName}}</h1>
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
+   <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1 style="margin-bottom:50px;">Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+        <a href="{{path('app_profile_learnings')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Retour à vos formations">Retour à vos formations/a>
+    </section>
    
-        <h2>La leçon "{{ lessonValidatedData.name }}" est validée!!!!!</h2>
-        <a href="{{path('app_profile_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;">Retour à mes formations</a>
+    <h2>La leçon "{{ lessonValidatedData.name }}" est validée!!!!!</h2>
+        
    
 
 </main>

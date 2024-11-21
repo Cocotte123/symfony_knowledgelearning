@@ -3,26 +3,28 @@
 {% block title %}Mes formations{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
 
 
-    <h1>{{ user.firstName }} {{ user.lastName}}</h1>
-    <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour à mon compte">Retour à mon compte</a>
+    <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1 style="margin-bottom:50px;">Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+        <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Retour à votre compte">Retour à votre compte</a>
+    </section>
+
     <h2>Mes certifications</h2>
-
-    <p>Un cursus est certifiée, quand toutes les leçons ont été validées.</p>
+    <p style="margin-bottom:50px;">Un cursus est certifié, quand toutes les leçons ont été validées.</p>
 
     <div class="container">
-    <div class="row mx-auto gy-5">
+    <div class="row mx-auto gy-5 mb-5">
     {% for userCertificationContent in userCertificationContents %}
-    <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card" style="width: 18rem; height: 10rem">
-                    <div class="card-body">
-                        <h5 class="card-title">Cursus {{userCertificationContent.cursusLevel}} {{userCertificationContent.cursusName}}</h5>
-                    </div>
-                    </div>
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem; height: 10rem; background-color:#384050">
+                <div class="card-body">
+                    <h5 class="card-title" style="padding-top:40px;color:#f1f8fc;">Cursus {{userCertificationContent.cursusLevel}} {{userCertificationContent.cursusName}}</h5>
+                </div>
             </div>
-     {% endfor %}
+        </div>
+    {% endfor %}
     </div>
     </div>
     

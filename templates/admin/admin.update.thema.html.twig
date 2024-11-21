@@ -3,22 +3,24 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
 
-
+  <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
     <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
-    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Formations">Formations</a>
+    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Formations">Formations</a>
+  </section>
 
-    <h2>Modifier le thème {{modifiedThema.name}}</h2>
+    
     <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;">
+    <h2 class="mb-5 text-decoration-underline">Modifier le thème {{modifiedThema.name}}</h2>
     {{ form_start(modifyThemaForm) }}
     <div  class="row">
  
-            <div class="col-md-4">
+            <div class="col-md-6">
             {{ form_row(modifyThemaForm.name) }}
             </div>
-            <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Modifier">Modifier</button>
+            <div class="col-md-6  my-auto">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</button>
             </div>
      {{ form_end(modifyThemaForm) }}
    </section>

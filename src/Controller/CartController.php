@@ -212,11 +212,11 @@ class CartController extends AbstractController
             $order->addOrderdetail($orderDetail);
 
             //create user's cursus
-            $userCursus = new Usercursus();
-            $userCursus->setUser($user);
-            $userCursus->setRepository($repository);
-            $userCursus->setLearningId($id);
-            $entityManager->persist($userCursus);
+            //$userCursus = new Usercursus();
+            //$userCursus->setUser($user);
+            //$userCursus->setRepository($repository);
+            //$userCursus->setLearningId($id);
+            //$entityManager->persist($userCursus);
 
             //create user's CursusLesson with different treatment if a completed cursus is bought or just one lesson
             if($repository=='lesson'){

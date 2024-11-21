@@ -5,11 +5,11 @@
 {% block body %}
 <main>
     <section class="container text-center">
-        <h1>Achat réalisé avec succès!</h1>
-        <p>Numéro de commande : {{ order.id }}</p>
-        <p>Merci {{ user.firstName }} de votre confiance</p>
-        <p>Rendez-vous dans votre espace pour accédez à vos nouvelles <a href="#">Formations</a></p>
-        <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #556B2F 1px;background-color:#8FBC8F;">Retour sur la boutique</a>
+        <h1 style="color:#00497c;">Achat réalisé avec succès!</h1>
+        <p class="text-center mt-5 mb-5 mx-auto" style="width:85%;font-size:25px;color:#384050;">Numéro de commande : {{ order.id }}</p>
+        <p class="text-center mt-5 mb-5 mx-auto" style="width:85%;font-size:25px;color:#384050;">Merci {{ user.firstName }} de votre confiance</p>
+        <p class="text-center mt-5 mb-5 mx-auto" style="width:85%;font-size:25px;color:#384050;">Rendez-vous dans votre espace pour accédez à vos nouvelles <a href="{{path('app_profile_learnings')}}" style="font-size:20px;color:#384050;font-weight:bold;" aria-label="Formations">Formations</a></p>
+        <a href="{{path('app_learning')}}" class="btn"  style="width: 200px;border:solid #82b864 1px;background-color:#82b864; color:#f1f8fc;" aria-label="Boutique" aria-label="Retour sur la boutique">Retour sur la boutique</a>
 
     </section>
     
