@@ -3,33 +3,33 @@
 {% block title %}Votre compte{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main class="container mx-auto p-2 text-center" style="width: 90%;">
 
-
+<section class=" container text-center mt-5 mb-5" style="color:#00497c;">
     <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
    
-    <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour aux utilisateurs">Retour aux utilisateurs</a>
-
+    <a href="{{path('app_admin_users')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Retour aux utilisateurs">Retour aux utilisateurs</a>
+</section>  
 
     <section class="container">
-        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+        <div class="mx-auto p-2" style="width: 90%;border:solid #384050 3px; margin-bottom:20px;color:#384050;">
        
            {{ form_start(userModifyAdminForm) }}
             <div  class="row">
  
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-bottom:20px;">
             {{ form_row(userModifyAdminForm.firstName) }}
             </div>
             <div class="col-md-4">
             {{ form_row(userModifyAdminForm.lastName) }}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2 my-auto">
             {{ form_row(userModifyAdminForm.isActivated) }}
             </div>
             
              
-            <div>
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            <div  style="margin-bottom:20px;">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier" >Modifier</button>
             </div>
           
             </div>  
@@ -41,19 +41,19 @@
 
    
     <section class="container">
-        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+        <div class="mx-auto p-2" style="width: 90%;border:solid #384050 3px; margin-bottom:20px;color:#384050;">
             <p>Après avoir modifié l'adresse mail, l'utilisateur devra réactiver votre compte.</p>
            {{ form_start(mailModifyForm) }}
             <div  class="row">
  
-            <div>
+            <div class="mx-auto" style="margin-bottom:20px;width:500px;">
             {{ form_row(mailModifyForm.email) }}
             </div>
            
             
              
             <div>
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</button>
             </div>
           
             </div>  

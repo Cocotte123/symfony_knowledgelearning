@@ -6,40 +6,43 @@
 <main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
 
 
-    <h1>{{ user.firstName }} {{ user.lastName}}</h1>
-    <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour à mon compte">Retour à mon compte</a>
-    <h2>Mes formations</h2>
+    <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1 style="margin-bottom:50px;">Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+        <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Retour à votre compte">Retour à votre compte</a>
+    </section>
+    
 
      
     
-    <div class="container">
+    <div class="container"  style="color:#384050;">
+        <h2 style="margin-bottom:30px;">Mes formations</h2>
     
         <table class="table">
         <thead>
             <tr>
-            <th scope="col">Cursus</th>
-            <th scope="col">Formation</th>
-            <th scope="col">N° Leçon</th>
-            <th scope="col">Créé le</th>
-            <th scope="col">Validée le</th>
-            <th scope="col">Validée</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Cursus</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Formation</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">N° Leçon</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Créé le</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Validée le</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Validée</th>
             <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         {% for userCursusLessonContent in userCursusLessonContents %}
             <tr>
-            <th scope="row">{{ userCursusLessonContent.cursusLevel }} {{ userCursusLessonContent.cursusName}} ({{ userCursusLessonContent.cursusNbLesson}} leçons)</th>
-            <th scope="row">{{ userCursusLessonContent.lessonName }}</th>
-            <th scope="row">{{ userCursusLessonContent.lessonNumber }}</th>
-            <th scope="row">{{ userCursusLessonContent.createdAt|date('d-m-Y') }}</th>
+            <th scope="row" style="color:#384050;">{{ userCursusLessonContent.cursusLevel }} {{ userCursusLessonContent.cursusName}} ({{ userCursusLessonContent.cursusNbLesson}} leçons)</th>
+            <th scope="row" style="color:#384050;">{{ userCursusLessonContent.lessonName }}</th>
+            <th scope="row" style="color:#384050;">{{ userCursusLessonContent.lessonNumber }}</th>
+            <th scope="row" style="color:#384050;">{{ userCursusLessonContent.createdAt|date('d-m-Y') }}</th>
             {% if userCursusLessonContent.updatedAt is empty %}
-            <th scope="row">Jamais</th>
+            <th scope="row" style="color:#384050;">Jamais</th>
             {% else %}
-            <th scope="row">{{ userCursusLessonContent.updatedAt|date('d-m-Y') }}</th>
+            <th scope="row" style="color:#384050;">{{ userCursusLessonContent.updatedAt|date('d-m-Y') }}</th>
             {% endif %}
-            <th scope="row">{{ (userCursusLessonContent.isValidated == 1) ? "oui" : "non" }}</th>
-            <th scope="row"><a href="{{path('app_bought_lesson', {id:userCursusLessonContent.lessonId})}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Suivre">Suivre</a></th>
+            <th scope="row" style="color:#384050;">{{ (userCursusLessonContent.isValidated == 1) ? "oui" : "non" }}</th>
+            <th scope="row"><a href="{{path('app_bought_lesson', {id:userCursusLessonContent.lessonId})}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Suivre">Suivre</a></th>
  
             </tr>
         {% endfor %}

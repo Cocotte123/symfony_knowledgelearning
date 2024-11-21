@@ -3,39 +3,40 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main class="container mx-auto p-2 text-center" style="width: 90%;">
 
-  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+   <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
     <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
-    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Formations">Formations</a>
+    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Formations">Formations</a>
   </section>
 
-  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
-    <h2>Modifier la leçon {{modifiedLesson.name}}</h2>
+  <section class="container mx-auto p-2 text-center mb-5" style="width: 80%;margin-bottom:10px;">
+    <h2  class="mb-5 text-decoration-underline">Modifier la leçon {{modifiedLesson.name}}</h2>
     
     {{ form_start(modifyLessonForm) }}
     <div  class="row">
- 
+       <div class="col-md-4 my-auto">
+            {{ form_row(modifyLessonForm.cursus) }}
+      </div>
       <div class="col-md-4">
             {{ form_row(modifyLessonForm.name) }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
             {{ form_row(modifyLessonForm.number) }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
             {{ form_row(modifyLessonForm.price) }}
-      </div>
-      <div class="col-md-4">
-            {{ form_row(modifyLessonForm.video) }}
       </div>
       <div class="col-md-4">
             {{ form_row(modifyLessonForm.text) }}
       </div>
       <div class="col-md-4">
-            {{ form_row(modifyLessonForm.cursus) }}
+            {{ form_row(modifyLessonForm.video) }}
       </div>
-      <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Modifier">Modifier</button>
+
+
+      <div class="col-md-4 my-auto">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</button>
       </div>
     </div>
     {{ form_end(modifyLessonForm) }}

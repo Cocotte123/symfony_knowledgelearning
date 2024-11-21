@@ -3,31 +3,34 @@
 {% block title %}Votre compte{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%">
 
 
-    <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+    <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1 style="margin-bottom:50px;">Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+        <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Retour à votre compte">Retour à votre compte</a>
+    </section>
    
-    <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Retour à votre compte">Retour à votre compte</a>
+    
 
 
     <section class="container">
-        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+        <div class="mx-auto p-2" style="width: 90%;border:solid #384050 3px; margin-bottom:20px;color:#384050;">
        
            {{ form_start(userModifyForm) }}
             <div  class="row">
  
-            <div class="col-md-4">
-            {{ form_row(userModifyForm.firstName) }}
-            </div>
-            <div class="col-md-4">
-            {{ form_row(userModifyForm.lastName) }}
-            </div>
+                <div class="col-md-6" style="margin-bottom:20px;">
+                {{ form_row(userModifyForm.firstName) }}
+                </div>
+                <div class="col-md-6">
+                {{ form_row(userModifyForm.lastName) }}
+                </div>
             
              
-            <div>
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
-            </div>
+                <div style="margin-bottom:20px;">
+                <button type="submit" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Modifier">Modifier</button>
+                </div>
           
             </div>  
             {{ form_end(userModifyForm) }}
@@ -37,19 +40,19 @@
     </section>
 
     <section class="container">
-        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+        <div class="mx-auto p-2" style="width: 90%;border:solid #384050 3px; margin-bottom:20px;color:#384050;">
        
            {{ form_start(passwordModifyForm) }}
             <div  class="row">
  
-            <div>
+            <div class="mx-auto" style="margin-bottom:20px;width:500px;">
             {{ form_row(passwordModifyForm.password) }}
             </div>
            
             
              
             <div>
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            <button type="submit" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Modifier">Modifier</button>
             </div>
           
             </div>  
@@ -60,19 +63,19 @@
     </section>
 
     <section class="container">
-        <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;background-color:#ff5733;">
+        <div class="mx-auto p-2" style="width: 90%;border:solid #384050 3px; margin-bottom:20px;color:#384050;">
             <p>Après avoir modifié votre adresse mail, vous devrez réactiver votre compte.</p>
            {{ form_start(mailModifyForm) }}
             <div  class="row">
  
-            <div>
+            <div class="mx-auto" style="margin-bottom:20px;width:500px;">
             {{ form_row(mailModifyForm.email) }}
             </div>
            
             
              
             <div>
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" >Modifier</button>
+            <button type="submit" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Modifier">Modifier</button>
             </div>
           
             </div>  

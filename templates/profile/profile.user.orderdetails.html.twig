@@ -3,20 +3,24 @@
 {% block title %}Mes commandes{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
 
-    <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
-    <h2>Détails de la commande n° {{ order }}</h2>
+    <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1 style="margin-bottom:50px;">Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
+        <a href="{{path('app_profile')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Retour à votre compte">Retour à votre compte</a>
+    </section>
+    
     
 
-   <div class="container">
+       <div class="container"  style="color:#384050;">
+        <h2  style="margin-bottom:30px;">Détails de la commande n° {{ order }}</h2>
     
         <table class="table">
         <thead>
             <tr>
-            <th scope="col">Formation</th>
-            <th scope="col">Date d'expiration</th>
-            <th scope="col">Actions</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Formation</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Date d'expiration</th>
+            <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -24,17 +28,17 @@
             <tr>
            
             
-            <th scope="row">{{ learningContent.learning }}</th>
+            <th scope="row"style="color:#384050;">{{ learningContent.learning }}</th>
             
-            <th scope="row">Jamais</th>
+            <th scope="row"style="color:#384050;">Jamais</th>
             <th scope="row">
             {% if learningContent.repository == 'lesson' %}
                 <div class="col">
-                <a href="{{path('app_bought_lesson', {id:learningContent.learningId})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Suivre">Suivre</a>
+                <a href="{{path('app_bought_lesson', {id:learningContent.learningId})}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Suivre">Suivre</a>
                 </div>
             {% else %}
                 <div class="col">
-                <a href="{{path('app_bought_cursus', {id:learningContent.learningId})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Suivre">Suivre</a>
+                <a href="{{path('app_bought_cursus', {id:learningContent.learningId})}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Suivre">Suivre</a>
                 </div>
             {% endif %}
             </th>

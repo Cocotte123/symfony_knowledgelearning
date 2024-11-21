@@ -5,17 +5,17 @@
 {% block body %}
 
 
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
    
-   <h1>Cursus {{ cursusData.level }} {{ cursusData.name }}</h1>
+   <h1 style="color:#00497c;margin-bottom:50px;">Cursus {{ cursusData.level }} {{ cursusData.name }}</h1>
     <div class="row mx-auto gy-5">
     {% for cursusDisplay in cursusDisplays %}
     <div class="col-md-4 d-flex justify-content-center">
-        <div class="card" style="width: 18rem;">
-            <h3>{{ cursusDisplay.name }}</h3>
+        <div class="card" style="width: 18rem; height: 15rem; background-color:#384050">
+            <h3 style="padding-top:40px;color:#f1f8fc;">{{ cursusDisplay.name }}</h3>
             <div class="card-body">
-                <p>Leçon n°{{ cursusDisplay.number }} sur {{ cursusDisplay.nbLessons }}</p>
-                <a href="{{path('app_bought_lesson', {id:cursusDisplay.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Suivre">Suivre</a>
+                <p style="color:#f1f8fc;">Leçon n°{{ cursusDisplay.number }} sur {{ cursusDisplay.nbLessons }}</p>
+                <a href="{{path('app_bought_lesson', {id:cursusDisplay.id})}}" class="btn" style="width: 200px;border:solid #82b864 2px; color:#f1f8fc;margin-top:5px;" aria-label="Suivre">Suivre</a>
             </div>
         </div>
     </div>

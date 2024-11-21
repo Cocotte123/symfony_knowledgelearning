@@ -5,17 +5,17 @@
 {% block body %}
 
 
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto mt-5 p-2 text-center" style="width: 90%;">
    
    {% for lessonDisplay in lessonDisplays %}
    <h2>Cursus {{ lessonDisplay.level }} {{ lessonDisplay.cursusname }}</h2>
    <p>Leçon n°{{ lessonDisplay.number }} sur {{ lessonDisplay.nbLessons }}</p>
-   <h1>{{ lessonDisplay.name }}</h1>
-   <p class="mx-auto p-2 text-center" style="width: 75%;border:solid black 1px;">{{ lessonDisplay.text }}</p>
+   <h1 style="color:#cd2c2e; font-size:50px;margin-top:50px;margin-bottom:50px;">{{ lessonDisplay.name }}</h1>
+   <p class="mx-auto p-2 text-center" style="width: 70%;margin-bottom:50px;">{{ lessonDisplay.text }}</p>
    {% if lessonDisplay.video is null %}
    <p>Pas de video</p>
    {% else %}
-   <div>
+   <div style="margin-bottom:50px;">
    <iframe width="560" height="315" src="{{lessonDisplay.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
    {% endif %}
    </div>
@@ -24,9 +24,9 @@
    {% for lesson in lessons %}
    <div>
    {% if lesson.isValidated == false %}
-   <a href="{{path('app_bought_lesson_validate', {id:lesson.id})}}" class="btn" style="width: 200px;border:solid black 1px;">Valider la leçon</a>
+   <a href="{{path('app_bought_lesson_validate', {id:lesson.id})}}" class="btn" style="width: 200px;border:solid #384050 2px; background-color:#384050;margin-top:5px;color:#f1f8fc;margin-bottom:50px;" aria-label="Valider la leçon">Valider la leçon</a>
    {% else %}
-   <a href="#" class="btn" style="width: 200px;border:solid black 1px;">Déjà validé!</a>
+   <a href="#" class="btn" style="width: 200px;border:solid #82b864 2px; background-color:#82b864;margin-top:5px;color:#f1f8fc;margin-bottom:50px;" aria-label="Déjà validé">Déjà validé!</a>
    {% endif %}
    </div>
    {% endfor %}

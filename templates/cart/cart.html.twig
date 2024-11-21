@@ -4,57 +4,54 @@
 
 {% block body %}
 <main>
-<section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+<section class=" container text-center mt-5 mb-5" style="color:#00497c;">
     <h1>Bonjour {{ user.firstName }} {{ user.lastName}}</h1>
 </section>
 <section class="container">
     {% for article in cartContent %}
-    <div class="mx-auto p-2" style="width: 90%;border:solid black 1px;margin-top:50px; margin-bottom:30px;">
+    <div class="mx-auto p-2" style="width: 90%;margin-top:10px; margin-bottom:10px;">
 
             <div  class="row">
                 <div class="col-md-4" style="align-content: center;">
-                <label>Nom:</label>
-
-                {% if article.repository == 'cursus' %}
-                <div style="border:solid black 1px;text-align:center;">Cursus {{article.orderedLearning.level}} {{ article.orderedLearning.name }}</div>
+                    {% if article.repository == 'cursus' %}
+                    <p style="text-align:start;font-size:25px;color:#384050;">Cursus {{article.orderedLearning.level}} {{ article.orderedLearning.name }}</p>
+                
+                    {% else %}
+                    <p style="text-align:start;font-size:25px;color:#384050;">Leçon : {{ article.orderedLearning.name }}</p>
+                
+                    {% endif %}
                 </div>
-                {% else %}
-                <div style="border:solid black 1px;text-align:center;">Leçon : {{ article.orderedLearning.name }}</div>
-                </div>
-                {% endif %}
 
                 <div class="col-md-2" style="align-content: center;">
-                <label>Prix:</label>
-                <div style="border:solid black 1px;text-align:center;">{{article.orderedLearning.formattedPrice}}€</div>
+                    <p style="text-align:center;font-size:25px;color:#384050;">{{article.orderedLearning.formattedPrice}}€</p>
                 </div>
                 <div class="col-md-2" style="align-content: center;">
-                <label>Quantité :</label>
-                <div style="border:solid black 1px;text-align:center;">{{article.orderedQuantity}}</div>
+                    <p style="text-align:center;font-size:25px;color:#384050;">{{article.orderedQuantity}}</p>
                 </div>
 
-                <div class="text-end">
-                {% if article.repository == 'cursus' %}
-                    <a href="{{path('app_cart_delete', {id:article.orderedLearning.id,repository:'cursus'})}}" class="btn" style="width: 200px;border:solid black 1px;">Retirer du panier</a>
-                {% else %}
-                    <a href="{{path('app_cart_delete', {id:article.orderedLearning.id,repository:'lesson'})}}" class="btn" style="width: 200px;border:solid black 1px;">Retirer du panier</a>
-                {% endif %}
+                <div class="text-end col-md-4">
+                    {% if article.repository == 'cursus' %}
+                        <a href="{{path('app_cart_delete', {id:article.orderedLearning.id,repository:'cursus'})}}" class="btn" style="width: 200px;border:solid #cd2c2e 2px; color:#384050;" aria-label="Retirer du panier">Retirer du panier</a>
+                    {% else %}
+                        <a href="{{path('app_cart_delete', {id:article.orderedLearning.id,repository:'lesson'})}}" class="btn" style="width: 200px;border:solid #cd2c2e 2px; color:#384050;" aria-label="Retirer du panier">Retirer du panier</a>
+                    {% endif %}
                 </div>
             </div>
             
     </div>
     
     {% else %}
-    <p class="text-center">Votre panier est vide</p>
+    <p class="text-center mt-5 mb-5 mx-auto" style="width:85%;font-size:25px;color:#384050;">Votre panier est vide</p>
     {% endfor %}
     <div class="row mx-auto p-2" style="width: 90%;justify-content:flex-end">
-        <div  class="col col-md-3">
-            <div style="width: 200px;border:solid black 1px;" class="text-center col-md-3">TOTAL : {{total|number_format(2, ',', ' ')}}€</div>
+        <div  class="col col-md-4">
+            <div style="width: 400px;font-size:35px;color:#384050;" class="text-center col-md-3">TOTAL : {{total|number_format(2, ',', ' ')}}€</div>
             
         </div>
-        <div  class="col col-md-3">
+        <div  class="col col-md-2">
             <div class="row">
-            <a href="{{path('app_cart_pay')}}" class="btn" style="width: 200px;border:solid #DC143C 1px; background-color:#F08080;margin-bottom:10px;" class="col-md-3">Finaliser la commande</a>
-            <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #556B2F 1px;background-color:#8FBC8F;">Continuer mes achats</a>
+            <a href="{{path('app_cart_pay')}}" class="btn" style="width: 200px;border:solid #cd2c2e 2px; color:#384050;margin-bottom:10px;" aria-label="Finaliser la commande">Finaliser la commande</a>
+            <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #cd2c2e 2px; color:#384050;" aria-label="Continuer mes achats">Continuer mes achats</a>
             </div>
         </div>
     </div>

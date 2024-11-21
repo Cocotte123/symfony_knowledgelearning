@@ -5,10 +5,10 @@
 {% block body %}
 <main>
     <section class="container text-center">
-        <h1>Votre paiement est annulé</h1>
-        <p>Merci {{ user.firstName }} de votre confiance</p>
-        <p>Votre panier sera conservé pendant 24h.</p>
-        <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #556B2F 1px;background-color:#8FBC8F;">Retour sur la boutique</a>
+        <h1 style="color:#00497c;">Votre paiement est annulé</h1>
+        <p class="text-center mt-5 mb-5 mx-auto" style="width:85%;font-size:25px;color:#384050;">Merci {{ user.firstName }} de votre confiance</p>
+        <p class="text-center mt-5 mb-5 mx-auto" style="width:85%;font-size:25px;color:#384050;">Votre panier sera conservé pendant 24h.</p>
+        <a href="{{path('app_learning')}}" class="btn" style="width: 200px;border:solid #82b864 1px;background-color:#82b864; color:#f1f8fc;" aria-label="Retour sur la boutique">Retour sur la boutique</a>
 
     </section>
     

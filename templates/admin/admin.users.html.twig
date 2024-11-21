@@ -3,54 +3,51 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main  class="container mx-auto p-2 text-center" style="width: 90%;">
 
 
-    <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
-    <a href="{{path('app_admin')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Back Office">Back office</a>
-
-    <div>
+    <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
+        <h1 style="margin-bottom:50px;">Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
+        <a href="{{path('app_admin')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Back Office">Back office</a>
+    </section>  
+    <div class="mb-3">
     {{ form_start(searchUserForm) }}
-     {{ form_end(searchUserForm) }}
+    {{ form_end(searchUserForm) }}
     </div>
    
 
-    <div class="container">
+    <div  class="container"  style="color:#384050;">
     
-        <table class="table">
+        <table class="table mb-5">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Prénom</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Email</th>
-            <th scope="col">Activé</th>
-            <th scope="col">Créé le</th>
-            <th scope="col">Modifié le</th>
-            <th scope="col">Modifié par</th>
-            <th scope="col">Nb Formations</th>
-            <th scope="col">Nb Certifications</th>
-            <th scope="col">Actions</th>
+            <th scope="col"  style="color:#82b864;font-size:20px;">#</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Prénom</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Nom</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Email</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Activé</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Créé le</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Modifié le</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Modifié par</th>
+            <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-            <th scope="row">{{user.id}}</th>
-            <th scope="row">{{user.firstName}}</th>
-            <th scope="row">{{user.lastName}}</th>
-            <th scope="row">{{user.email}}</th>
-            <th scope="row">{{ (user.isActivated == 1) ? "oui" : "non"}}</th>
-            <th scope="row">{{user.createdat|date('d-m-Y') }}</th>
-            <th scope="row">{{user.updatedat|date('d-m-Y') }}</th>
-            <th scope="row">{{user.updatedby}}</th>
-            <th scope="row">x</th>
-            <th scope="row">x</th>
+            <th scope="row" style="color:#384050;">{{user.id}}</th>
+            <th scope="row" style="color:#384050;">{{user.firstName}}</th>
+            <th scope="row" style="color:#384050;">{{user.lastName}}</th>
+            <th scope="row" style="color:#384050;">{{user.email}}</th>
+            <th scope="row" style="color:#384050;">{{ (user.isActivated == 1) ? "oui" : "non"}}</th>
+            <th scope="row" style="color:#384050;">{{user.createdat|date('d-m-Y') }}</th>
+            <th scope="row" style="color:#384050;">{{user.updatedat|date('d-m-Y') }}</th>
+            <th scope="row" style="color:#384050;">{{user.updatedby}}</th>
             <th scope="row">
                 <div class="col">
-                <a href="{{path('app_admin_user_history', {id:user.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Consulter">Consulter</a>
-                <a href="{{path('app_admin_users_update', {id:user.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
-                <a href="{{path('app_admin_users_delete', {id:user.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+                <a href="{{path('app_admin_user_history', {id:user.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Consulter">Consulter</a>
+                <a href="{{path('app_admin_users_update', {id:user.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px; color:#82b864;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_users_delete', {id:user.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px; color:#82b864;" aria-label="Supprimer">Supprimer</a>
                 </div>
             </th>
  

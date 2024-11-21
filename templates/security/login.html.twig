@@ -3,21 +3,21 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<form class="mx-auto" style="width:500px" method="post">
+<form class="mx-auto mt-5" style="width:500px;" method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté(e) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnectert</a>
+        <div class="mb-3" style="color:#00497c;">
+            Vous êtes connecté(e) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
         </div>
     {% endif %}
 
 
-    <label class="mx-auto" style="margin-bottom:15px" for="inputEmail">Email</label>
+    <label class="mx-auto" style="margin-bottom:15px;color:#00497c;" for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" style="margin-bottom:15px" autocomplete="email" required autofocus>
-    <label for="inputPassword" style="margin-bottom:15px">Mot de passe</label>
+    <label for="inputPassword" style="margin-bottom:15px;color:#00497c;">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" style="margin-bottom:15px" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
@@ -34,9 +34,10 @@
             </label>
         </div>
     #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
+    <div class="container text-center mt-5">
+    <button class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" type="submit" aria-label="Connexion">
         Connexion
     </button>
+    </div>
 </form>
 {% endblock %}

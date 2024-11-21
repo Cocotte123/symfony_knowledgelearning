@@ -3,63 +3,64 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<main  class="container mx-auto p-2 text-center" style="width: 90%;border:solid black 1px;">
+<main class="container mx-auto p-2 text-center" style="width: 90%;">
 
-  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
+  <section class=" container text-center mt-5 mb-5" style="color:#00497c;">
     <h1>Bonjour {{ admin.firstName }} {{ admin.lastName}}</h1>
-    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Formations">Formations</a>
+    <a href="{{path('app_admin_learnings')}}" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Formations">Formations</a>
   </section>
 
-  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;">
-    <h2>Modifier le cursus {{modifiedCursus.level}} {{modifiedCursus.name}}</h2>
+  <section class="container mx-auto p-2 text-center mb-5" style="width: 80%;margin-bottom:10px;">
+    <h2 class="mb-5 text-decoration-underline">Modifier le cursus {{modifiedCursus.level}} {{modifiedCursus.name}}</h2>
     
     {{ form_start(modifyCursusForm) }}
     <div  class="row">
- 
-      <div class="col-md-4">
-            {{ form_row(modifyCursusForm.name) }}
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-4 my-auto">
             {{ form_row(modifyCursusForm.level) }}
       </div>
-      <div class="col-md-4">
-            {{ form_row(modifyCursusForm.price) }}
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-4 my-auto">
             {{ form_row(modifyCursusForm.thema) }}
       </div>
       <div class="col-md-4">
+            {{ form_row(modifyCursusForm.name) }}
+      </div>
+      
+      <div class="col-md-2">
+            {{ form_row(modifyCursusForm.price) }}
+      </div>
+      
+      <div class="col-md-2">
             {{ form_row(modifyCursusForm.nbLessons) }}
       </div>
-      <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Modifier">Modifier</button>
+      <div class="col-md-4 my-auto">
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</button>
       </div>
     </div>
     {{ form_end(modifyCursusForm) }}
   </section>
 
-  <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:30px;"">
-    <h2>Les leçons de ce cursus</h2>
-        <table class="table">
+ <section class="container mx-auto p-2 text-center mb-5" style="width: 80%;margin-bottom:10px;">
+    <h2 class="mb-5 text-decoration-underline">Les leçons de ce cursus</h2>
+        <table class="table mb-5">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Numéro</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Actions</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">#</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Nom</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Numéro</th>
+            <th scope="col" style="color:#82b864;font-size:20px;">Prix</th>
+            <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         {% for lesson in lessons|sort((a, b) => a.number <=> b.number) %}
             <tr>
-            <th scope="row">{{lesson.id}}</th>
-            <th scope="row">{{lesson.name}}</th>
-            <th scope="row">{{lesson.number}}</th>
-            <th scope="row">{{lesson.price}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.id}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.name}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.number}}</th>
+            <th scope="row" style="color:#384050;">{{lesson.price}}</th>
             <th scope="row">
-                <a href="{{path('app_admin_lesson_update', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Modifier">Modifier</a>
-                <a href="{{path('app_admin_lesson_delete', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid black 1px;" aria-label="Supprimer">Supprimer</a>
+                <a href="{{path('app_admin_lesson_update', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Modifier">Modifier</a>
+                <a href="{{path('app_admin_lesson_delete', {id:lesson.id})}}" class="btn" style="width: 100px;border:solid #82b864 2px;color:#82b864;" aria-label="Supprimer">Supprimer</a>
                 
             </th>
  
@@ -69,18 +70,21 @@
         </table>
     </section>
 
-    <section class="container mx-auto p-2 text-center" style="width: 80%;border:solid black 1px;margin-bottom:10px;">
-    <h2>Ajouter une leçon</h2>
+<section class="container mx-auto p-2 text-center mb-5" style="width: 80%;margin-bottom:10px;">
+    <h2 class="mb-5 text-decoration-underline">Ajouter une leçon</h2>
     
     {{ form_start(newLessonForm) }}
     <div  class="row">
+      <div class="col-md-4 my-auto">
+            {{ form_row(newLessonForm.cursus)}}
+      </div>
       <div class="col-md-4">
             {{ form_row(newLessonForm.name) }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
             {{ form_row(newLessonForm.number) }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
             {{ form_row(newLessonForm.price) }}
       </div>
       <div class="col-md-4">
@@ -89,12 +93,10 @@
       <div class="col-md-4">
             {{ form_row(newLessonForm.video) }}
       </div>
-      <div class="col-md-4">
-            {{ form_row(newLessonForm.cursus)}}
-      </div>
+
       
       <div class="col-md-4">
-            <button type="submit" class="btn" style="width: 200px;border:solid black 1px;" aria-label="Ajouter">Ajouter</button>
+            <button type="submit" class="btn" style="width: 200px;border:solid #82b864 2px;color:#82b864;" aria-label="Ajouter">Ajouter</button>
       </div>
       
       
