@@ -21,6 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Service\StripeService;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Controller used for buying and payment process
+ */
 class CartController extends AbstractController
 {
     /**
@@ -70,9 +73,9 @@ class CartController extends AbstractController
 
     /**
      * @Route("/cart/add/{repository}/{id}", name="app_cart_add")
-     * Add new learning: cursus or lesson
-     * @param int $id
-     * @param string $repository
+     * Add new learning: cursus or lesson to cart
+     * @param int $id Cursus ou lesson's id
+     * @param string $repository Cursus or Lesson repository
      */
     public function add($id,$repository, SessionInterface $session, CursusRepository $cursusRepository,LessonRepository $lessonRepository): Response
     {
@@ -100,9 +103,9 @@ class CartController extends AbstractController
 
     /**
      * @Route("/cart/remove/{repository}/{id}", name="app_cart_delete")
-     * Delete learning by id and repository: cursus or lesson
-     * @param int $id
-     * @param string $repository
+     * Delete learning by id and repository: cursus or lesson from cart
+     * @param int $id Cursus ou lesson's id
+     * @param string $repository Cursus ou lesson's repository
      */
     public function delete($id,$repository, SessionInterface $session, CursusRepository $cursusRepository,LessonRepository $lessonRepository): Response
     {
@@ -177,7 +180,7 @@ class CartController extends AbstractController
 
     /**
      * @Route("/cart/pay/success", name="app_pay_success")
-     * Create order, order's details ans user's cursus with session's data and remove session after stripe's paiement
+     * Create order, order's details ans usercursuslesson with session's data and remove session after stripe's paiement
      * @param array $session
      */
     public function success(Request $request,SessionInterface $session, CursusRepository $cursusRepository, LessonRepository $lessonRepository, EntityManagerInterface $entityManager): Response

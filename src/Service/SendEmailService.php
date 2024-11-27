@@ -18,6 +18,14 @@ class SendEmailService
        
     }
 
+    /**
+     * Send mail
+     * @param string $from
+     * @param string $to
+     * @param string $subject
+     * @param string $template
+     * @param array $context 
+    */
     public function sendMail(string $from,string $to,string $subject,string $template,array $context):void
     {
         //create

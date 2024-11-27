@@ -9,10 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controller used for shop pages
+ */
 class LearningController extends AbstractController
 {
     /**
      * @Route("/learning", name="app_learning")
+     * Display themas
      */
     public function index(ThemaRepository $themaRepository): Response
     {
@@ -27,6 +31,8 @@ class LearningController extends AbstractController
 
     /**
      * @Route("/learning/{id}", name="app_learning_cursus")
+     * Display cursuses by thema
+     * @param int $id Thema's id
      */
     public function cursusListing($id, ThemaRepository $themaRepository,CursusRepository $cursusRepository): Response
     {
@@ -44,6 +50,8 @@ class LearningController extends AbstractController
 
     /**
      * @Route("/learning/lesson/{id}", name="app_learning_lesson")
+     * Display lessons by cursus
+     * @param int $id Cursus's id
      */
     public function lessonListing($id, CursusRepository $cursusRepository,LessonRepository $lessonRepository): Response
     {

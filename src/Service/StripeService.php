@@ -12,7 +12,12 @@ use Stripe\Stripe;
 
 class StripeService {
 
-      
+    /**
+     * Create Stripe's url
+     * @param array $cartContent
+     * @param string $cartId Session's id
+     * @param array $user
+    */
     public function stripe(array $cartContent, string $cartId, $user): string
     {
             

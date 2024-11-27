@@ -26,10 +26,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Controller used for administration's pages
+ */
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="app_admin")
+     * Home page admin
      */
     public function index(): Response
     {
@@ -43,6 +47,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/users", name="app_admin_users")
+     * Display list of users with search
      */
     public function usersAdmin(UserRepository $userRepository, Request $request): Response
     {
@@ -83,6 +88,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/users/delete/{id}", name="app_admin_users_delete")
+     * Delete user by id
+     * @param int $id User's id
      */
     public function userAdminDelete($id,UserRepository $userRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -101,6 +108,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/users/update/{id}", name="app_admin_users_update")
+     * Update name, mail by user
+     * @param int $id User's id
      */
     public function userAdminUpdate($id,UserRepository $userRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -163,6 +172,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/learnings", name="app_admin_learnings")
+     * Display and create cursus, lessons and thema
      */
     public function learningsAdmin(ThemaRepository $themaRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -243,6 +253,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/thema/delete/{id}", name="app_admin_thema_delete")
+     * Delete thema
+     * @param int $id Thema's id
      */
     public function themaAdminDelete($id,ThemaRepository $themaRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -261,6 +273,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/thema/update/{id}", name="app_admin_thema_update")
+     * Update thema's name
+     * @param int $id Thema's id
      */
     public function themaAdminUpdate($id,ThemaRepository $themaRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -294,6 +308,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/cursus/delete/{id}", name="app_admin_cursus_delete")
+     * Delete cursus
+     * @param int $id Cursus's id
      */
     public function cursusAdminDelete($id,CursusRepository $cursusRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -312,6 +328,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/cursus/update/{id}", name="app_admin_cursus_update")
+     * Update cursus, add a lesson and display list of lessons by cursus
+     * @param int $id Cursus's id
      */
     public function cursusAdminUpdate($id,CursusRepository $cursusRepository,LessonRepository $lessonRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -376,6 +394,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/lesson/delete/{id}", name="app_admin_lesson_delete")
+     * Delete lesson
+     * @param int $id Lesson's id
      */
     public function lessonAdminDelete($id,LessonRepository $lessonRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -392,8 +412,10 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin_learnings');
     }
 
-        /**
+    /**
      * @Route("/admin/lesson/update/{id}", name="app_admin_lesson_update")
+     * Update lesson
+     * @param int $id Lesson's id
      */
     public function lessonAdminUpdate($id,LessonRepository $lessonRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -430,6 +452,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/user/history/{id}", name="app_admin_user_history")
+     * Display orders, learnings and certifications by user
+     * @param int $id User's id
      */
     public function userHistoryAdmin($id, UserRepository $userRepository, OrderRepository $orderRepository, UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, Request $request, EntityManagerInterface $entityManager, UserCursusLessonRepository $userCursusLessonRepository): Response
     {
@@ -520,6 +544,7 @@ class AdminController extends AbstractController
 
      /**
      * @Route("/admin/orders", name="app_admin_orders")
+     * Display orders by month and reporting of sold learnings
      */
     public function ordersAdmin(UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, OrderdetailRepository $orderDetailRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -558,6 +583,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/user/orderdetail/{id}", name="app_admin_user_orderdetail")
+     * Display lines by order
+     * @param int $id Order's id
      */
     public function userOrderdetailAdmin($id, UserRepository $userRepository, OrderRepository $orderRepository, OrderdetailRepository $orderDetailRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, Request $request, EntityManagerInterface $entityManager): Response
     {

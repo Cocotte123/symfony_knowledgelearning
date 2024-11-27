@@ -16,10 +16,15 @@ use App\Repository\UserCursusLessonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Controller used for displaying and validating lessons after buying
+ */
 class BoughtLessonController extends AbstractController
 {
     /**
      * @Route("/bought/lesson/{id}", name="app_bought_lesson")
+     * Display lesson's content
+     * @param int $id Lesson's id
      */
     public function displayLesson($id, CursusRepository $cursusRepository, LessonRepository $lessonRepository, UserCursusLessonRepository $userCursusLessonRepository): Response
     {
@@ -52,6 +57,8 @@ class BoughtLessonController extends AbstractController
 
     /**
      * @Route("/bought/cursus/{id}", name="app_bought_cursus")
+     * Display bought cursuses by user
+     * @param int $id Cursus's id
      */
     public function displayCursus($id, CursusRepository $cursusRepository, LessonRepository $lessonRepository, UserCursusLessonRepository $userCursusLessonRepository): Response
     {
@@ -81,6 +88,8 @@ class BoughtLessonController extends AbstractController
 
     /**
      * @Route("/bought/lesson/validate/{id}", name="app_bought_lesson_validate")
+     * Validate lesson by user
+     * @param int $id Lesson's id
      */
     public function validateLesson($id, CursusRepository $cursusRepository, LessonRepository $lessonRepository, UserCursusLessonRepository $userCursusLessonRepository,Request $request, EntityManagerInterface $entityManager): Response
     {
