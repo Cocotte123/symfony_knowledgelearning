@@ -163,6 +163,8 @@ class ProfileController extends AbstractController
         $order = $id;
         $orderDetail = $orderDetailRepository->findBy(['ordernumber'=>$id]);
 
+        $learningContent = [];
+
         foreach($orderDetail as $data){
             $repository=$data->getRepository();
             $orderDetailId=$data->getLearningId();
@@ -203,6 +205,8 @@ class ProfileController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_CLIENT');
         $user = $this->getUser();
         $userId = $user->getId();
+
+        $userCursusLessonContent = [];
 
         //$userCursus = $userCursusRepository->findBy(['user'=>$user]);
 
@@ -278,8 +282,11 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $userId = $user->getId();
 
+        $userCertificationContent = [];
+
         $userCertifications = $userCursusLessonRepository->certificationbyuser($userId);
         //dd($userCertifications);
+        
         foreach($userCertifications as $data){
             $cursusId=$data['cursus'];
             $cursusName=$cursusRepository->findOneBy(['id'=>$cursusId])->getName();
@@ -291,6 +298,9 @@ class ProfileController extends AbstractController
                 
             ];
         }
+        
+
+        
        
         return $this->render('profile/profile.user.certifications.html.twig', [
             'controller_name' => 'ProfileController',

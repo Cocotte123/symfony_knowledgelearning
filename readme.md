@@ -22,3 +22,19 @@ symfony serve -d
 ```bash
 php bin/phpunit --testdox
 ```
+
+### Installer la base de tests
+
+```bash
+php bin/console --env=test doctrine:database:create
+php bin/console --env=test doctrine:schema:create
+php bin/console --env=test doctrine:fixtures:load
+```
+
+### Réinitialiser la base de tests
+
+```bash
+php bin/console --env=test doctrine:schema:drop --force
+php bin/console --env=test doctrine:schema:update --force
+php bin/console --env=test doctrine:fixtures:load -n
+```

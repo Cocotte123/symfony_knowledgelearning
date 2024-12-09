@@ -43,7 +43,7 @@
                         <p class="card-text"style="color:#f1f8fc;">Leçon n° {{lesson.number}}</p>
                         <p class="card-text"style="color:#f1f8fc;">{{lesson.formattedPrice}} €</p>
                         {% if is_granted("ROLE_CLIENT") %}
-                        <a href="{{path('app_cart_add', {id:cursus.id,repository:'cursus'})}}" class="btn" style="width: 200px;border:solid #cd2c2e 2px; color:#f1f8fc;margin-top:5px;" aria-label="Ajouter au panier">Ajouter au panier</a>
+                        <a href="{{path('app_cart_add', {id:lesson.id,repository:'lesson'})}}" class="btn" style="width: 200px;border:solid #cd2c2e 2px; color:#f1f8fc;margin-top:5px;" aria-label="Ajouter au panier">Ajouter au panier</a>
                         {% else %}
                         <p style="width: 200px;border:solid #82b864 2px; color:#f1f8fc;margin-top:5px;text-align: center;margin-left: auto;margin-right: auto;">Vous devez être connecté et activé pour acheter.</p>
                         {% endif %}

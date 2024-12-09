@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -64,6 +65,11 @@ class RegistrationFormType extends AbstractType
                     //    'minScore' => PasswordStrength::STRENGTH_STRONG,
                     //]),
                 ],
+            ])
+            ->add('save', Submittype::class, [
+                'label' => "Enregistrer",
+                'attr' => ['style' => 'width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;height:40px;border-radius:5px;']
+                
             ])
         ;
     }

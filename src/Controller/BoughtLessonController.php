@@ -31,10 +31,11 @@ class BoughtLessonController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_CLIENT');
         $user = $this->getUser();
         $userId = $user->getId();
-
+        //dd($userId);
         
         $lessonId = $id;
         $lesson = $userCursusLessonRepository->existlessonbyuser($userId,$lessonId);
+       // dd($lesson);
 
         
 
@@ -89,7 +90,7 @@ class BoughtLessonController extends AbstractController
     /**
      * @Route("/bought/lesson/validate/{id}", name="app_bought_lesson_validate")
      * Validate lesson by user
-     * @param int $id Lesson's id
+     * @param int $id userCusrsusLesson's id
      */
     public function validateLesson($id, CursusRepository $cursusRepository, LessonRepository $lessonRepository, UserCursusLessonRepository $userCursusLessonRepository,Request $request, EntityManagerInterface $entityManager): Response
     {

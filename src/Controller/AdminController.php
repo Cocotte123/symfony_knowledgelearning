@@ -17,6 +17,7 @@ use App\Repository\UserCursusLessonRepository;
 use App\Form\UserModifyAdminFormType;
 use App\Form\MailUserModifyFormType;
 use App\Form\ThemaRegistrationFormType;
+use App\Form\ThemaModifyFormType;
 use App\Form\CursusRegistrationFormType;
 use App\Form\LessonRegistrationFormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -133,7 +134,7 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Le profil {{ user.email }} a bien été mis à jour.');
+            $this->addFlash('success', 'Le profil a bien été mis à jour.');
             return $this->redirectToRoute('app_admin_users');
         }
 
@@ -282,7 +283,7 @@ class AdminController extends AbstractController
         $admin = $this->getUser();
         $modifiedThema = $themaRepository->findOneBy(['id'=>$id]);
        
-        $modifyThemaForm = $this->createForm(ThemaRegistrationFormType::class, $modifiedThema);
+        $modifyThemaForm = $this->createForm(ThemaModifyFormType::class, $modifiedThema);
         $modifyThemaForm -> handleRequest($request);
         if($modifyThemaForm->isSubmitted() && $modifyThemaForm->isValid()){
             $now = new \DateTimeImmutable();
@@ -548,7 +549,9 @@ class AdminController extends AbstractController
      */
     public function ordersAdmin(UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, OrderdetailRepository $orderDetailRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $learningByMonth = $userCursusRepository->learningbymonth();
+        //$learningByMonth = $userCursusRepository->learningbymonth();
+        $now = new \DateTimeImmutable();
+        $learningByMonth = $orderDetailRepository->learningbymonth($now);
         //dd($learningByMonth);
         foreach($learningByMonth as $data){
             $year=$data['year'];

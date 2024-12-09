@@ -12,10 +12,11 @@
         {{ form_row(registrationForm.firstName) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
-       
         <div class="container text-center mt-5">
-        <button type="submit" class="btn" style="width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;" aria-label="Enregistrer">Enregistrer</button>
+        {{ form_row(registrationForm.save) }}
         </div>
+       
+        
     {{ form_end(registrationForm) }}
 </main>
 {% endblock %}

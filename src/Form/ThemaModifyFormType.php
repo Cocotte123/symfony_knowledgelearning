@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class ThemaRegistrationFormType extends AbstractType
+class ThemaModifyFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -18,8 +18,8 @@ class ThemaRegistrationFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'label' => "Nom du thème :"
             ])
-            ->add('add', Submittype::class, [
-                'label' => "Ajouter",
+            ->add('update', Submittype::class, [
+                'label' => "Modifier",
                 'attr' => ['style' => 'width: 200px;border:solid #82b864 2px;color:#82b864;height:40px;border-radius:5px;']
                 
             ])
