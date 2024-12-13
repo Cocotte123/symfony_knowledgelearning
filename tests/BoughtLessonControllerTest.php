@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BoughtLessonControllerTest extends WebTestCase
 {
+    /**
+     * Test display lesson's page with check presence of the title
+     */
     public function testRoute_app_bought_lesson(): void
     {
         $client = static::createClient();
@@ -24,6 +27,9 @@ class BoughtLessonControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display cursus's page with check presence of the cursus and lessons
+     */
     public function testRoute_app_bought_cursus(): void
     {
         $client = static::createClient();
@@ -42,6 +48,9 @@ class BoughtLessonControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test validation of a lesson with check presence of confirmation's text
+     */
     public function testRoute_app_bought_lesson_validate(): void
     {
         $client = static::createClient();

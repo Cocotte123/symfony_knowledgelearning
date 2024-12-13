@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CartControllerTest extends WebTestCase
 {
+    /**
+     * Test add a learning with check presence of a learning in page
+     */
     public function testRoute_app_cart_add(): void
     {
         $client = static::createClient();
@@ -28,6 +31,9 @@ class CartControllerTest extends WebTestCase
         $this->assertSelectorExists('p:contains("test_cursus")');
     }
 
+    /**
+     * Test delete a learning in cart with check learning not exist in page
+     */
     public function testRoute_app_cart_delete(): void
     {
         $client = static::createClient();
@@ -44,6 +50,9 @@ class CartControllerTest extends WebTestCase
         $this->assertSelectorNotExists('p:contains("test_cursus")');
     }
 
+    /**
+     * Test validate cart with check redirect
+     */
     public function testRoute_app_cart_pay(): void
     {
         $client = static::createClient();
@@ -68,6 +77,9 @@ class CartControllerTest extends WebTestCase
     }
 
 
+    /**
+     * Test payment's success with check text
+     */
     public function testRoute_app_pay_success(): void
     {
         $client = static::createClient();
@@ -88,6 +100,9 @@ class CartControllerTest extends WebTestCase
         $this->assertSelectorExists('h1:contains("Achat réalisé avec succès!")');
     }
 
+    /**
+     * Test payment's cance with check presence of text
+     */
     public function testRoute_app_pay_cancel(): void
     {
         $client = static::createClient();

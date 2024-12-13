@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Controller used for shop pages
+ * Controller used for shopping pages
  */
 class LearningController extends AbstractController
 {

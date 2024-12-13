@@ -1,29 +1,29 @@
 # Knowledge_Learning
 
-Knowledge_Learning est une application de vente de formations en ligne.
+Knowledge_Learning is a webapp used to sell and follow e-learnings.
 
-## Environnement de développement
+## Dev environment
 
-### Pré-requis
+### Prerequisites
 
-* PHP >=7.2.5
-* Composer
-* Symfony CLI
-* Stripe
+- PHP >=7.2.5
+- Composer
+- Symfony CLI
+- Stripe
 
-### Lancer l'environnement de développement
+### Launch dev environment
 
 ```bash
 symfony serve -d
 ```
 
-### Lancer les tests
+### Launch tests
 
 ```bash
 php bin/phpunit --testdox
 ```
 
-### Installer la base de tests
+### Install and populate test database
 
 ```bash
 php bin/console --env=test doctrine:database:create
@@ -31,7 +31,7 @@ php bin/console --env=test doctrine:schema:create
 php bin/console --env=test doctrine:fixtures:load
 ```
 
-### Réinitialiser la base de tests
+### Remove and populate again test database
 
 ```bash
 php bin/console --env=test doctrine:schema:drop --force

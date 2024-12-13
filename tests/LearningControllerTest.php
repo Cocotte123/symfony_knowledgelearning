@@ -12,6 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class LearningControllerTest extends WebTestCase
 {
     
+    /**
+     * Test display list of themas  with check presence of thema's name
+     */
     public function testRoute_app_learning(): void
     {
         $client = static::createClient();
@@ -22,6 +25,9 @@ class LearningControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h5', 'test_thema');
     }
 
+    /**
+     * Test display logged user with check presence of name
+     */
     public function testShouldDisplayLoggedUser(): void
     {
         $client = static::createClient();
@@ -39,6 +45,9 @@ class LearningControllerTest extends WebTestCase
         
     }
     
+    /**
+     * Test display list of cursuses with check presence of cursus's name
+     */
     public function testRoute_app_learning_cursus(): void
     {
         $client = static::createClient();
@@ -50,6 +59,9 @@ class LearningControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h5', 'Cursus d\'initiation test_cursus');
     }
 
+    /**
+     * Test display list of lessons for a cursus with check presence of a lesson
+     */
     public function testRoute_app_learning_lesson(): void
     {
         $client = static::createClient();

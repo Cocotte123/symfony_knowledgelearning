@@ -28,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Email(message="L'adresse email {{value}} est incorrecte.")
+     * @Assert\Email(message="L'adresse email {{ value }} est incorrecte.")
      */
     private $email;
 
@@ -39,6 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @var string The hashed password
+     * @Assert\NotCompromisedPassword
      * @ORM\Column(type="string")
      */
     private $password;

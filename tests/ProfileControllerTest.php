@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ProfileControllerTest extends WebTestCase
 {
+    /**
+     * Test display profile's page with check response
+     */
     public function testRoute_app_profile(): void
     {
         $client = static::createClient();
@@ -26,7 +29,9 @@ class ProfileControllerTest extends WebTestCase
         
         
     }
-
+    /**
+     * Test update user with check response
+     */
     public function testRoute_app_profile_update(): void
     {
         $client = static::createClient();
@@ -56,6 +61,9 @@ class ProfileControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display orders of user with check presence of order's number
+     */
     public function testRoute_app_profile_orders(): void
     {
         $client = static::createClient();
@@ -74,6 +82,9 @@ class ProfileControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display of details for an order with check presence of a cursus, contained in the order
+     */
     public function testRoute_app_profile_orderdetails(): void
     {
         $client = static::createClient();
@@ -92,6 +103,9 @@ class ProfileControllerTest extends WebTestCase
         $this->assertSelectorExists('th:contains("test_cursus")');
     }
 
+    /**
+     * Test display  bought learnings by user with check presence of learning's name
+     */
     public function testRoute_app_profile_learnings(): void
     {
         $client = static::createClient();
@@ -110,6 +124,9 @@ class ProfileControllerTest extends WebTestCase
         $this->assertSelectorExists('th:contains("test_lesson1")');
     }
 
+    /**
+     * Test display validated learnings by user with check presence of learning's name
+     */
     public function testRoute_app_profile_certifications(): void
     {
         $client = static::createClient();

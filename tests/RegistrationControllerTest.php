@@ -9,6 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RegistrationControllerTest extends WebTestCase
 {
+    /**
+     * Test create of a user with check response
+     */
     public function testRoute_app_register(): void
     {
         $client = static::createClient();

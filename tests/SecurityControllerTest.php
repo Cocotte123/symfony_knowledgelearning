@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SecurityControllerTest extends WebTestCase
 {
+    /**
+     * Test login with check presence of user's name
+     */
     public function testRoute_app_login(): void
     {
         $client = static::createClient();
@@ -27,6 +30,9 @@ class SecurityControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Bonjour Jean Martin');
     }
 
+    /**
+     * Test logout with check absence of learning's name
+     */
     public function testRoute_app_logout(): void
     {
         $client = static::createClient();

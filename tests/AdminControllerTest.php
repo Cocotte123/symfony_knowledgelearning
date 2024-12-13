@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AdminControllerTest extends WebTestCase
 {
+    /**
+     * Test display Home page admin
+     */
     public function testRoute_app_admin(): void
     {
         $client = static::createClient();
@@ -27,6 +30,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display page with check presence of a user
+     */
     public function testRoute_app_admin_users(): void
     {
         $client = static::createClient();
@@ -44,6 +50,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test delete one user and redirect
+     */
     public function testRoute_app_admin_users_delete(): void
     {
         $client = static::createClient();
@@ -60,6 +69,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test update one user
+     */
     public function testRoute_app_admin_users_update(): void
     {
         $client = static::createClient();
@@ -85,6 +97,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display page with check presence of a cursus
+     */
     public function testRoute_app_admin_learnings(): void
     {
         $client = static::createClient();
@@ -102,6 +117,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test create thema with check redirect
+     */
     public function testCreate_Thema(): void
     {
         $client = static::createClient();
@@ -123,6 +141,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test update thema with check redirect
+     */
     public function testUpdate_Thema(): void
     {
         $client = static::createClient();
@@ -146,6 +167,9 @@ class AdminControllerTest extends WebTestCase
 
 
 
+    /**
+     * Test delete thema with check redirect
+     */
     public function testRoute_app_admin_thema_delete(): void
     {
         $client = static::createClient();
@@ -162,6 +186,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display orders by user's page with check presence order and order's element
+     */
     public function testRoute_app_admin_user_history(): void
     {
         $client = static::createClient();
@@ -182,6 +209,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display orders' page with check presence of tables and contents
+     */
     public function testRoute_app_admin_orders(): void
     {
         $client = static::createClient();
@@ -201,6 +231,9 @@ class AdminControllerTest extends WebTestCase
         
     }
 
+    /**
+     * Test display details of an order with check table and contents
+     */
     public function testRoute_app_admin_user_orderdetail(): void
     {
         $client = static::createClient();

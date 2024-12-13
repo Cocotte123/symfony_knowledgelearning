@@ -4,7 +4,7 @@ namespace App\Tests;
 
 use App\Entity\User;
 use App\Entity\Order;
-use App\Entity\USerCursusLesson;
+use App\Entity\UserCursusLesson;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
