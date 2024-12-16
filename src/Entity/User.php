@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints\PasswordStrength;
+
 
 
 /**
@@ -28,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\Email(message="L'adresse email {{value}} est incorrecte.")
+     * @Assert\Email(message="L'adresse email {{ value }} est incorrecte.")
      */
     private $email;
 
@@ -39,6 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @var string The hashed password
+     * @Assert\NotCompromisedPassword
      * @ORM\Column(type="string")
      */
     private $password;
@@ -93,7 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $usercursuses;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserCursusLesson::class, mappedBy="relations")
+     * @ORM\OneToMany(targetEntity=UserCursusLesson::class, mappedBy="user")
      */
     private $userCursusLessons;
 
@@ -352,7 +353,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->userCursusLessons->contains($userCursusLesson)) {
             $this->userCursusLessons[] = $userCursusLesson;
-            $userCursusLesson->setRelations($this);
+            $userCursusLesson->setUSer($this);
         }
 
         return $this;
@@ -362,8 +363,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->userCursusLessons->removeElement($userCursusLesson)) {
             // set the owning side to null (unless already changed)
-            if ($userCursusLesson->getRelations() === $this) {
-                $userCursusLesson->setRelations(null);
+            if ($userCursusLesson->getUser() === $this) {
+                $userCursusLesson->setUser(null);
             }
         }
 

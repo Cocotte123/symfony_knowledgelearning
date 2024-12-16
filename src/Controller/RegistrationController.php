@@ -17,10 +17,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\SendEmailService;
 use App\Service\JWTService;
 
+/**
+ * Controller used for creating user
+ */
 class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="app_register")
+     * Register's form
      */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, SendEmailService $mail, JWTService $jwt): Response
     {
@@ -111,7 +115,7 @@ class RegistrationController extends AbstractController
 
         //token hasn't valid format, validity and signature
         $this->addFlash('danger', 'Le lien a expiré ou est invalide.');
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_learning');
         }
        
     }
@@ -155,7 +159,7 @@ class RegistrationController extends AbstractController
 
         //////////////////////////////////////////////
         $this->addFlash('success', "Un nouvel email d'activation vient de vous être envoyé.");
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_learning');
 
     }
 }

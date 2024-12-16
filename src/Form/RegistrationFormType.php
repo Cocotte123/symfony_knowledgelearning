@@ -14,7 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -55,15 +56,22 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Merci de saisir un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 12,
                         'minMessage' => 'Votre mot de passe doit avoir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 20,
                     ]),
-                    //new PasswordStrength([
-                    //    'minScore' => PasswordStrength::STRENGTH_STRONG,
-                    //]),
+                    //new Regex([
+                    //    'htmlPattern' => "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,20}",
+                    //    'pattern' => "/[0-9]{1,}[a-z]{11,19}/i",
+                    //])
+                   
                 ],
+            ])
+            ->add('save', Submittype::class, [
+                'label' => "Enregistrer",
+                'attr' => ['style' => 'width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;height:40px;border-radius:5px;']
+                
             ])
         ;
     }

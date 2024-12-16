@@ -57,6 +57,20 @@ class OrderdetailRepository extends ServiceEntityRepository
        
     }
 
+    public function learningbymonth($now) {
+
+        
+        $query= $this->createQueryBuilder('od');
+        $query->select( 'YEAR(od.created_at) as year, MONTH(od.created_at) as month, od.repository,od.learning_id, COUNT(CONCAT(od.repository,od.learning_id)) as nb' );
+        $query->having('month = :monthnow');
+        $query->groupby('year,month,od.repository,od.learning_id');
+        $query ->orderBy('year,month', 'DESC');
+        $query ->setParameter('monthnow', $now->format('m'));
+        return $query->getQuery()->getResult();
+        
+       
+    }
+
 
    
 //    /**

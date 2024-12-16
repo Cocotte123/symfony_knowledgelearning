@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 
 class UserModifyAdminFormType extends AbstractType
@@ -29,6 +31,11 @@ class UserModifyAdminFormType extends AbstractType
             ->add('isActivated', CheckboxType::class, [
                 //'attr' => ['class' => 'tinymce'],
                 'label' => "Activé :"
+            ])
+            ->add('update', Submittype::class, [
+                'label' => "Modifier",
+                'attr' => ['style' => 'width: 200px;border:solid #82b864 2px;color:#82b864;height:40px;border-radius:5px;']
+                
             ])
             
         ;

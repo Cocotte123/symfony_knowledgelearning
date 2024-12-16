@@ -20,10 +20,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Monolog\DateTimeImmutable;
 
+/**
+ * Controller used for profile's pages
+ */
 class ProfileController extends AbstractController
 {
     /**
      * @Route("/profile", name="app_profile")
+     * Profile page
      */
     public function indexUser(UserRepository $userRepository): Response
     {
@@ -41,6 +45,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/profile/update", name="app_profile_update")
+     * Update profile by user: name, password, mail
      */
     public function updateUser(UserRepository $userRepository,Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
@@ -129,6 +134,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/profile/orders", name="app_profile_orders")
+     * Display orders by user
      */
     public function ordersUser(UserRepository $userRepository, OrderRepository $orderRepository): Response
     {
@@ -146,6 +152,8 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/profile/orderdetails/{id}", name="app_profile_orderdetails")
+     * Display line of orders by user
+     * @param int $id Order's id
      */
     public function orderDetailsUser($id, UserRepository $userRepository, OrderRepository $orderRepository, OrderdetailRepository $orderDetailRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository): Response
     {
@@ -154,6 +162,8 @@ class ProfileController extends AbstractController
         $user ->getId();
         $order = $id;
         $orderDetail = $orderDetailRepository->findBy(['ordernumber'=>$id]);
+
+        $learningContent = [];
 
         foreach($orderDetail as $data){
             $repository=$data->getRepository();
@@ -188,12 +198,15 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/profile/learnings", name="app_profile_learnings")
+     * Display bought learnings by user
      */
     public function learningsUser(UserRepository $userRepository, UsercursusRepository $userCursusRepository, CursusRepository $cursusRepository,LessonRepository $lessonRepository, UserCursusLessonRepository $userCursusLessonRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_CLIENT');
         $user = $this->getUser();
         $userId = $user->getId();
+
+        $userCursusLessonContent = [];
 
         //$userCursus = $userCursusRepository->findBy(['user'=>$user]);
 
@@ -261,6 +274,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/profile/certifications", name="app_profile_certifications")
+     * Display certifications by user
      */
     public function certificationsUser(UserRepository $userRepository, CursusRepository $cursusRepository, UserCursusLessonRepository $userCursusLessonRepository): Response
     {
@@ -268,8 +282,11 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $userId = $user->getId();
 
+        $userCertificationContent = [];
+
         $userCertifications = $userCursusLessonRepository->certificationbyuser($userId);
         //dd($userCertifications);
+        
         foreach($userCertifications as $data){
             $cursusId=$data['cursus'];
             $cursusName=$cursusRepository->findOneBy(['id'=>$cursusId])->getName();
@@ -281,6 +298,9 @@ class ProfileController extends AbstractController
                 
             ];
         }
+        
+
+        
        
         return $this->render('profile/profile.user.certifications.html.twig', [
             'controller_name' => 'ProfileController',

@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 class UserModifyFormType extends AbstractType
@@ -25,8 +26,11 @@ class UserModifyFormType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'label' => "Prénom :"
             ])
-            //->add('updated_at')
-            //->add('updated_by')
+            ->add('update', Submittype::class, [
+                'label' => "Modifier",
+                'attr' => ['style' => 'width: 200px;border:solid #384050 1px;background-color:#384050; color:#f1f8fc;height:40px;border-radius:5px;']
+                
+            ])
         ;
     }
 
