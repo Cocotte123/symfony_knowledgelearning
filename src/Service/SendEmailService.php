@@ -28,6 +28,7 @@ class SendEmailService
     */
     public function sendMail(string $from,string $to,string $subject,string $template,array $context):void
     {
+        try{
         //create
         $email = (new TemplatedEmail)
             ->from($from)
@@ -38,5 +39,10 @@ class SendEmailService
 
         //send
         $this->mailer->send($email);
+        } catch (\Exception $e) {
+            // Log error for debugging purposes
+            // You can use a logger service or simply dump the exception
+            dump($e->getMessage());
+        }
     }
 }
