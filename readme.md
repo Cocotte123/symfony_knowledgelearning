@@ -10,6 +10,7 @@ Knowledge_Learning is a webapp used to sell and follow e-learnings.
 - Composer
 - Symfony CLI
 - Stripe
+- Apache-pack
 
 ### Launch dev environment
 

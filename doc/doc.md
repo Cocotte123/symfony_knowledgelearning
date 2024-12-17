@@ -17,6 +17,7 @@ Knowledge_learning's app is based on these technical specifications :
 - BDD: MySQL 5.7
 - twig/twig : 2.12|^3.0
 - Stripe/stripe-php: 16.2
+- symfony/apache-pack : ^1.0
 - phpunit : ^9.5
 
 
