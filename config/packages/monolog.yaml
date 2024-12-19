@@ -49,6 +49,7 @@ when@prod:
             nested:
                 type: stream
                 path: php://stderr
+                # path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
                 formatter: monolog.formatter.json
             console:
@@ -60,3 +61,8 @@ when@prod:
                 channels: [deprecation]
                 path: php://stderr
                 formatter: monolog.formatter.json
+            doctrine:
+                type: stream
+                path: '%kernel.logs_dir%/doctrine.log'
+                level: debug
+                channels: ['doctrine']
