@@ -27,7 +27,8 @@ class StripeService {
             \Stripe\Stripe::setApiVersion('2024-06-20');
             header('Content-Type: application/json');
 
-            $YOUR_DOMAIN = 'http://127.0.0.1:8000';
+            //$YOUR_DOMAIN = 'http://127.0.0.1:8000';
+            $YOUR_DOMAIN = 'https://knowledgelearning.alwaysdata.net';
             $userMail = $user->getEmail();
 
             $checkout_session = \Stripe\Checkout\Session::create([
