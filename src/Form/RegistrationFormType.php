@@ -60,6 +60,7 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Votre mot de passe doit avoir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 20,
+                        'maxMessage' => 'Votre mot de passe doit avoir au maximum {{ limit }} caractères',
                     ]),
                     //new Regex([
                     //    'htmlPattern' => "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,20}",
